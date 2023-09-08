@@ -7,8 +7,9 @@
         private Pen _pen;
         private Brush _brush;
 
-        private List<FigureType> _figureTypes;
-        private FigureType _selectedFigureType;
+        private FigureType[] _figureTypes = new FigureType[] { FigureType.Точка, FigureType.Отрезок, FigureType.Прямоугольник, FigureType.Овал };
+        private string[] _figureTypeComboBoxItems = new string[] { "Точка", "Отрезок", "Прямоугольник", "Овал" };
+        private FigureType _selectedFigureType; // тип фигуры, выбранный пользователем
 
         public CreateFigureForm()
         {
@@ -17,13 +18,6 @@
             _pen = new Pen(Color.Black, 10);
             _brush = new SolidBrush(Color.Black);
 
-            _figureTypes = new List<FigureType> { FigureType.Точка, FigureType.Отрезок, FigureType.Прямоугольник, FigureType.Овал };
-            InitComboBox();
-        }
-
-        private void InitComboBox()
-        {
-            string[] _figureTypeComboBoxItems = _figureTypes.Select(figureType => figureType.ToString()).ToArray();
             FigureTypeComboBox.Items.AddRange(_figureTypeComboBoxItems);
         }
 
@@ -34,7 +28,11 @@
             PrepareUI(_selectedFigureType);
         }
 
-        private void PrepareUI(FigureType figureType)
+        /// <summary>
+        /// Подготавливает интерфейс для ввода параметров для конкретного типа фигуры
+        /// </summary>
+        /// <param name="figureType">Тип фигуры</param>
+        public void PrepareUI(FigureType figureType)
         {
             CleanFields();
             ParameterTipLabel.Visible = true;
@@ -65,6 +63,9 @@
             }
         }
 
+        /// <summary>
+        /// Убирает интерфейс ввода параметров для всех видов фигур
+        /// </summary>
         private void CleanFields()
         {
             ParameterTipLabel.Visible = false;
@@ -84,19 +85,17 @@
             TextBoxHeight.Text = null;
         }
 
-        private void DrawFigureButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Пытается создать фигуру на основе параметров, введенных пользователем
+        /// </summary>
+        /// <param name="figure">Созданная фигура на основе параметров, введенных пользователем</param>
+        /// <returns>Если удалось создать фигуру true, иначе false</returns>
+        private bool TryCreateFigure(out Figure? figure)
         {
-            if (!TryProcessUserInputData())
-            {
-                MessageBox.Show("Пожалуйста, введите все параметры целыми числами.", "Неправильный ввод");
-            }
-        }
+            figure = null;
+            bool isUserInputCorrect = false;
 
-        private bool TryProcessUserInputData()
-        {
             int x1, y1, x2, y2, width, heigth;
-            Figure? figure = null;
-
             switch (_selectedFigureType)
             {
                 case FigureType.Точка:
@@ -104,6 +103,7 @@
                         int.TryParse(TextBoxY1.Text, out y1))
                     {
                         figure = new FigureDot(_brush, x1, y1);
+                        isUserInputCorrect = true;
                     }
                     break;
                 case FigureType.Отрезок:
@@ -113,6 +113,7 @@
                         int.TryParse(TextBoxY2.Text, out y2))
                     {
                         figure = new FigureSegment(_pen, x1, y1, x2, y2);
+                        isUserInputCorrect = true;
                     }
                     break;
                 case FigureType.Прямоугольник:
@@ -122,6 +123,7 @@
                         int.TryParse(TextBoxHeight.Text, out heigth))
                     {
                         figure = new FigureRectangle(_pen, x1, y1, width, heigth);
+                        isUserInputCorrect = true;
                     }
                     break;
                 case FigureType.Овал:
@@ -131,22 +133,26 @@
                         int.TryParse(TextBoxHeight.Text, out heigth))
                     {
                         figure = new FigureEllipse(_pen, x1, y1, width, heigth);
+                        isUserInputCorrect = true;
                     }
                     break;
             }
+            return isUserInputCorrect;
+        }
 
-            if (figure != null)
+        private void DrawFigureButton_Click(object sender, EventArgs e) // пользователь нажал кнопку нарисовать
+        {
+            if (!TryCreateFigure(out Figure? figure) || figure == null)
             {
-                DrawFigureButtonClicked?.Invoke(figure);
-                return true;
+                MessageBox.Show("Пожалуйста, введите все параметры фигуры целыми числами.", "Неправильный ввод");
             }
             else
             {
-                return false;
+                DrawFigureButtonClicked?.Invoke(figure);
             }
         }
 
-        private enum FigureType
+        public enum FigureType
         {
             Точка,
             Отрезок,

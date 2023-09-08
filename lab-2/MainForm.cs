@@ -1,23 +1,19 @@
 namespace lab_2
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private string? _selectedLineType;
-        private string? _selectedFigureType;
-        private string[] initFigureTypes = new string[] { "Круг", "Квадрат", "Треугольник", "Прямоугольник" };
+        private string? _selectedLineType; // тип линии, выбранный пользователем
+        private string? _selectedFigureType; // тип фигуры, выбранный пользователем
+        private string[] _figureTypeComboBoxItems = new string[] { "Круг", "Квадрат", "Треугольник", "Прямоугольник" };
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            InitFigureTypeComboBox();
+
+            FigureTypeComboBox.Items.AddRange(_figureTypeComboBoxItems); // добавление вариантов выбора для ComboBox
         }
 
-        private void InitFigureTypeComboBox()
-        {
-            FigureTypeComboBox.Items.AddRange(initFigureTypes);
-        }
-
-        private void AddLineType_Click(object sender, EventArgs e)
+        private void AddLineType_Click(object sender, EventArgs e) // нажата кнопка добавления нового типа линии
         {
             if (!string.IsNullOrEmpty(LineTypeTextBox.Text))
             {
@@ -26,7 +22,7 @@ namespace lab_2
             }
         }
 
-        private void LineTypeListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void LineTypeListBox_SelectedIndexChanged(object sender, EventArgs e) // пользователь выбрал тип линии
         {
             if (!string.IsNullOrEmpty(LineTypeListBox.Text))
             {
@@ -35,7 +31,7 @@ namespace lab_2
             }
         }
 
-        private void FigureTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FigureTypeComboBox_SelectedIndexChanged(object sender, EventArgs e) // пользователь выбрал тип фигуры
         {
             if (!string.IsNullOrEmpty(FigureTypeComboBox.Text))
             {
@@ -44,7 +40,7 @@ namespace lab_2
             }
         }
 
-        private void ShowUserChoiceButton_Click(object sender, EventArgs e)
+        private void ShowUserChoiceButton_Click(object sender, EventArgs e) // нажата кнопка посмотреть
         {
             if (!string.IsNullOrEmpty(_selectedLineType) && !string.IsNullOrEmpty(_selectedFigureType))
             {

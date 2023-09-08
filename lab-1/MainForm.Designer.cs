@@ -1,6 +1,6 @@
 ﻿namespace lab_1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -49,13 +49,14 @@
             // saveButton
             // 
             saveButton.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            saveButton.Location = new Point(531, 276);
-            saveButton.Margin = new Padding(4, 5, 4, 5);
+            saveButton.Location = new Point(690, 353);
+            saveButton.Margin = new Padding(5, 6, 5, 6);
             saveButton.Name = "saveButton";
-            saveButton.Size = new Size(294, 73);
+            saveButton.Size = new Size(382, 93);
             saveButton.TabIndex = 0;
             saveButton.Text = "Сохранить";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += SaveButton_Click;
             // 
             // printDialog1
             // 
@@ -64,10 +65,10 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Location = new Point(0, 35);
+            menuStrip1.Location = new Point(0, 46);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(9, 3, 0, 3);
-            menuStrip1.Size = new Size(1171, 24);
+            menuStrip1.Padding = new Padding(12, 4, 0, 4);
+            menuStrip1.Size = new Size(1522, 24);
             menuStrip1.TabIndex = 1;
             // 
             // файлToolStripMenuItem
@@ -91,8 +92,8 @@
             menuStrip2.Items.AddRange(new ToolStripItem[] { файлToolStripMenuItem1, справкаToolStripMenuItem });
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
-            menuStrip2.Padding = new Padding(9, 3, 0, 3);
-            menuStrip2.Size = new Size(1171, 35);
+            menuStrip2.Padding = new Padding(12, 4, 0, 4);
+            menuStrip2.Size = new Size(1522, 46);
             menuStrip2.TabIndex = 2;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -100,77 +101,79 @@
             // 
             файлToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { редактированиеToolStripMenuItem1, выходToolStripMenuItem1 });
             файлToolStripMenuItem1.Name = "файлToolStripMenuItem1";
-            файлToolStripMenuItem1.Size = new Size(69, 29);
+            файлToolStripMenuItem1.Size = new Size(90, 38);
             файлToolStripMenuItem1.Text = "Файл";
             // 
             // редактированиеToolStripMenuItem1
             // 
             редактированиеToolStripMenuItem1.Name = "редактированиеToolStripMenuItem1";
-            редактированиеToolStripMenuItem1.Size = new Size(248, 34);
+            редактированиеToolStripMenuItem1.Size = new Size(359, 44);
             редактированиеToolStripMenuItem1.Text = "Редактирование";
-            редактированиеToolStripMenuItem1.Click += редактированиеToolStripMenuItem1_Click;
+            редактированиеToolStripMenuItem1.Click += РедактированиеToolStripMenuItem1_Click;
             // 
             // выходToolStripMenuItem1
             // 
             выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
-            выходToolStripMenuItem1.Size = new Size(248, 34);
+            выходToolStripMenuItem1.Size = new Size(359, 44);
             выходToolStripMenuItem1.Text = "Выход";
-            выходToolStripMenuItem1.Click += выходToolStripMenuItem1_Click;
+            выходToolStripMenuItem1.Click += ВыходToolStripMenuItem1_Click;
             // 
             // справкаToolStripMenuItem
             // 
             справкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { авторПрограммыToolStripMenuItem, оПрограммеToolStripMenuItem });
             справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            справкаToolStripMenuItem.Size = new Size(97, 29);
+            справкаToolStripMenuItem.Size = new Size(126, 38);
             справкаToolStripMenuItem.Text = "Справка";
             // 
             // авторПрограммыToolStripMenuItem
             // 
             авторПрограммыToolStripMenuItem.Name = "авторПрограммыToolStripMenuItem";
-            авторПрограммыToolStripMenuItem.Size = new Size(268, 34);
+            авторПрограммыToolStripMenuItem.Size = new Size(348, 44);
             авторПрограммыToolStripMenuItem.Text = "Автор программы";
-            авторПрограммыToolStripMenuItem.Click += авторПрограммыToolStripMenuItem_Click;
+            авторПрограммыToolStripMenuItem.Click += АвторПрограммыToolStripMenuItem_Click;
             // 
             // оПрограммеToolStripMenuItem
             // 
             оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            оПрограммеToolStripMenuItem.Size = new Size(268, 34);
+            оПрограммеToolStripMenuItem.Size = new Size(348, 44);
             оПрограммеToolStripMenuItem.Text = "О программе";
-            оПрограммеToolStripMenuItem.Click += оПрограммеToolStripMenuItem_Click;
+            оПрограммеToolStripMenuItem.Click += ОПрограммеToolStripMenuItem_Click;
             // 
             // authorNameTextBox
             // 
             authorNameTextBox.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            authorNameTextBox.Location = new Point(309, 145);
+            authorNameTextBox.Location = new Point(429, 186);
+            authorNameTextBox.Margin = new Padding(4);
             authorNameTextBox.Name = "authorNameTextBox";
-            authorNameTextBox.Size = new Size(516, 71);
+            authorNameTextBox.PlaceholderText = "Имя автора";
+            authorNameTextBox.Size = new Size(670, 93);
             authorNameTextBox.TabIndex = 3;
-            authorNameTextBox.Text = "Пример автора";
             // 
             // authorNameLabel
             // 
             authorNameLabel.AutoSize = true;
             authorNameLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            authorNameLabel.Location = new Point(19, 145);
+            authorNameLabel.Location = new Point(25, 186);
+            authorNameLabel.Margin = new Padding(4, 0, 4, 0);
             authorNameLabel.Name = "authorNameLabel";
-            authorNameLabel.Size = new Size(294, 65);
+            authorNameLabel.Size = new Size(396, 86);
             authorNameLabel.TabIndex = 4;
             authorNameLabel.Text = "Имя автора:";
             // 
-            // Form1
+            // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1171, 840);
+            ClientSize = new Size(1522, 1075);
             Controls.Add(authorNameLabel);
             Controls.Add(authorNameTextBox);
             Controls.Add(saveButton);
             Controls.Add(menuStrip1);
             Controls.Add(menuStrip2);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "Form1";
+            Margin = new Padding(4, 3, 4, 3);
+            Name = "MainForm";
             Text = "Лабораторная работа #1";
             menuStrip2.ResumeLayout(false);
             menuStrip2.PerformLayout();

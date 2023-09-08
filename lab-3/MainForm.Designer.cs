@@ -1,6 +1,6 @@
 ﻿namespace lab_3
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -48,9 +48,10 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(16, 15);
+            panel1.Margin = new Padding(4, 4, 4, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(776, 426);
+            panel1.Size = new Size(1009, 545);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
@@ -60,26 +61,26 @@
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { типГраницыToolStripMenuItem1, толщинаГраницыToolStripMenuItem, цветЗаливкиToolStripMenuItem, цветГраницыToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(234, 132);
+            contextMenuStrip1.Size = new Size(290, 156);
             // 
             // типГраницыToolStripMenuItem1
             // 
             типГраницыToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { непрерывнаяToolStripMenuItem, пунктирнаяToolStripMenuItem1 });
             типГраницыToolStripMenuItem1.Name = "типГраницыToolStripMenuItem1";
-            типГраницыToolStripMenuItem1.Size = new Size(233, 32);
+            типГраницыToolStripMenuItem1.Size = new Size(289, 38);
             типГраницыToolStripMenuItem1.Text = "Тип границы";
             // 
             // непрерывнаяToolStripMenuItem
             // 
             непрерывнаяToolStripMenuItem.Name = "непрерывнаяToolStripMenuItem";
-            непрерывнаяToolStripMenuItem.Size = new Size(228, 34);
+            непрерывнаяToolStripMenuItem.Size = new Size(300, 44);
             непрерывнаяToolStripMenuItem.Text = "Непрерывная";
             непрерывнаяToolStripMenuItem.Click += непрерывнаяToolStripMenuItem_Click;
             // 
             // пунктирнаяToolStripMenuItem1
             // 
             пунктирнаяToolStripMenuItem1.Name = "пунктирнаяToolStripMenuItem1";
-            пунктирнаяToolStripMenuItem1.Size = new Size(228, 34);
+            пунктирнаяToolStripMenuItem1.Size = new Size(300, 44);
             пунктирнаяToolStripMenuItem1.Text = "Пунктирная";
             пунктирнаяToolStripMenuItem1.Click += пунктирнаяToolStripMenuItem_Click;
             // 
@@ -87,41 +88,41 @@
             // 
             толщинаГраницыToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pt5BorderMenu, pt10BorderMenu, pt15BorderMenu });
             толщинаГраницыToolStripMenuItem.Name = "толщинаГраницыToolStripMenuItem";
-            толщинаГраницыToolStripMenuItem.Size = new Size(233, 32);
+            толщинаГраницыToolStripMenuItem.Size = new Size(289, 38);
             толщинаГраницыToolStripMenuItem.Text = "Толщина границы";
             // 
             // pt5BorderMenu
             // 
             pt5BorderMenu.Name = "pt5BorderMenu";
-            pt5BorderMenu.Size = new Size(270, 34);
+            pt5BorderMenu.Size = new Size(204, 44);
             pt5BorderMenu.Text = "5 пт";
             pt5BorderMenu.Click += pt5BorderMenu_Click;
             // 
             // pt10BorderMenu
             // 
             pt10BorderMenu.Name = "pt10BorderMenu";
-            pt10BorderMenu.Size = new Size(270, 34);
+            pt10BorderMenu.Size = new Size(204, 44);
             pt10BorderMenu.Text = "10 пт";
             pt10BorderMenu.Click += pt10BorderMenu_Click;
             // 
             // pt15BorderMenu
             // 
             pt15BorderMenu.Name = "pt15BorderMenu";
-            pt15BorderMenu.Size = new Size(270, 34);
+            pt15BorderMenu.Size = new Size(204, 44);
             pt15BorderMenu.Text = "15 пт";
             pt15BorderMenu.Click += pt15BorderMenu_Click;
             // 
             // цветЗаливкиToolStripMenuItem
             // 
             цветЗаливкиToolStripMenuItem.Name = "цветЗаливкиToolStripMenuItem";
-            цветЗаливкиToolStripMenuItem.Size = new Size(233, 32);
+            цветЗаливкиToolStripMenuItem.Size = new Size(289, 38);
             цветЗаливкиToolStripMenuItem.Text = "Цвет заливки";
             цветЗаливкиToolStripMenuItem.Click += цветЗаливкиToolStripMenuItem_Click;
             // 
             // цветГраницыToolStripMenuItem
             // 
             цветГраницыToolStripMenuItem.Name = "цветГраницыToolStripMenuItem";
-            цветГраницыToolStripMenuItem.Size = new Size(233, 32);
+            цветГраницыToolStripMenuItem.Size = new Size(289, 38);
             цветГраницыToolStripMenuItem.Text = "Цвет границы";
             цветГраницыToolStripMenuItem.Click += цветГраницыToolStripMenuItem_Click;
             // 
@@ -130,13 +131,14 @@
             типЛинииToolStripMenuItem.Name = "типЛинииToolStripMenuItem";
             типЛинииToolStripMenuItem.Size = new Size(32, 19);
             // 
-            // Form1
+            // MainForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1040, 576);
             Controls.Add(panel1);
-            Name = "Form1";
+            Margin = new Padding(4, 4, 4, 4);
+            Name = "MainForm";
             Text = "Лабораторная работа #3";
             contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);

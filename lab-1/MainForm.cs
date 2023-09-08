@@ -1,15 +1,12 @@
-using System.Diagnostics;
-
 namespace lab_1
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private string? _authorName;
+        private string? _authorName; // имя автора, выбранное пользователем
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            saveButton.Click += OnSaveButtonClicked;
 
             if (string.IsNullOrEmpty(_authorName))
             {
@@ -17,16 +14,14 @@ namespace lab_1
             }
         }
 
-        private void редактированиеToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void РедактированиеToolStripMenuItem1_Click(object sender, EventArgs e) // нажата кнопка редактирование
         {
-            Debug.WriteLine("редактирование нажато");
             authorNameLabel.Visible = !authorNameLabel.Visible;
             authorNameTextBox.Visible = !authorNameTextBox.Visible;
             saveButton.Visible = !saveButton.Visible;
-
         }
 
-        private void OnSaveButtonClicked(object? sender, EventArgs e)
+        private void SaveButton_Click(object? sender, EventArgs e) // нажата кнопка сохранения
         {
 
             if (string.IsNullOrEmpty(authorNameTextBox.Text))
@@ -34,24 +29,24 @@ namespace lab_1
                 _authorName = null;
                 авторПрограммыToolStripMenuItem.Enabled = false;
             }
-            else
+            else // пользователь ввел автора
             {
                 _authorName = authorNameTextBox.Text;
                 авторПрограммыToolStripMenuItem.Enabled = true;
             }
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e) // нажата кнопка о программе
         {
             MessageBox.Show(this, $"Лаборатнорная #1{Environment.NewLine}Версия 0.0.1", "О программе");
         }
 
-        private void авторПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void АвторПрограммыToolStripMenuItem_Click(object sender, EventArgs e) // нажата кнопка автор программы
         {
             MessageBox.Show(this, $"Имя автора: {_authorName}", "Сведения об авторе");
         }
 
-        private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ВыходToolStripMenuItem1_Click(object sender, EventArgs e) // нажата кнопка выход
         {
             Close();
         }

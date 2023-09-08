@@ -40,100 +40,109 @@
             ParameterTipLabel = new Label();
             SuspendLayout();
             // 
-            // figureTypeComboBox
+            // FigureTypeComboBox
             // 
             FigureTypeComboBox.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             FigureTypeComboBox.FormattingEnabled = true;
-            FigureTypeComboBox.Location = new Point(170, 83);
-            FigureTypeComboBox.Name = "figureTypeComboBox";
-            FigureTypeComboBox.Size = new Size(321, 46);
+            FigureTypeComboBox.Location = new Point(240, 103);
+            FigureTypeComboBox.Margin = new Padding(4);
+            FigureTypeComboBox.Name = "FigureTypeComboBox";
+            FigureTypeComboBox.Size = new Size(488, 58);
             FigureTypeComboBox.TabIndex = 1;
             FigureTypeComboBox.SelectedIndexChanged += FigureTypeComboBox_SelectedIndexChanged;
             // 
-            // textBoxX1
+            // TextBoxX1
             // 
             TextBoxX1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxX1.Location = new Point(170, 206);
-            TextBoxX1.Name = "textBoxX1";
+            TextBoxX1.Location = new Point(296, 277);
+            TextBoxX1.Margin = new Padding(4);
+            TextBoxX1.Name = "TextBoxX1";
             TextBoxX1.PlaceholderText = "x1";
-            TextBoxX1.Size = new Size(132, 45);
+            TextBoxX1.Size = new Size(170, 57);
             TextBoxX1.TabIndex = 2;
             TextBoxX1.TextAlign = HorizontalAlignment.Center;
             TextBoxX1.Visible = false;
             // 
-            // textBoxX2
+            // TextBoxX2
             // 
             TextBoxX2.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxX2.Location = new Point(170, 276);
-            TextBoxX2.Name = "textBoxX2";
+            TextBoxX2.Location = new Point(296, 366);
+            TextBoxX2.Margin = new Padding(4);
+            TextBoxX2.Name = "TextBoxX2";
             TextBoxX2.PlaceholderText = "x2";
-            TextBoxX2.Size = new Size(132, 45);
+            TextBoxX2.Size = new Size(170, 57);
             TextBoxX2.TabIndex = 4;
             TextBoxX2.TextAlign = HorizontalAlignment.Center;
             TextBoxX2.Visible = false;
             // 
-            // figureLabel
+            // FigureLabel
             // 
             FigureLabel.AutoSize = true;
             FigureLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            FigureLabel.Location = new Point(60, 83);
-            FigureLabel.Name = "figureLabel";
-            FigureLabel.Size = new Size(114, 38);
+            FigureLabel.Location = new Point(78, 106);
+            FigureLabel.Margin = new Padding(4, 0, 4, 0);
+            FigureLabel.Name = "FigureLabel";
+            FigureLabel.Size = new Size(154, 51);
             FigureLabel.TabIndex = 13;
             FigureLabel.Text = "Фигура:";
             // 
-            // drawFigureButton
+            // DrawFigureButton
             // 
             DrawFigureButton.Enabled = false;
             DrawFigureButton.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            DrawFigureButton.Location = new Point(280, 440);
-            DrawFigureButton.Name = "drawFigureButton";
-            DrawFigureButton.Size = new Size(211, 63);
+            DrawFigureButton.Location = new Point(439, 576);
+            DrawFigureButton.Margin = new Padding(4);
+            DrawFigureButton.Name = "DrawFigureButton";
+            DrawFigureButton.Size = new Size(274, 81);
             DrawFigureButton.TabIndex = 8;
             DrawFigureButton.Text = "Нарисовать";
             DrawFigureButton.UseVisualStyleBackColor = true;
             DrawFigureButton.Click += DrawFigureButton_Click;
             // 
-            // textBoxY2
+            // TextBoxY2
             // 
             TextBoxY2.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxY2.Location = new Point(359, 276);
-            TextBoxY2.Name = "textBoxY2";
+            TextBoxY2.Location = new Point(542, 366);
+            TextBoxY2.Margin = new Padding(4);
+            TextBoxY2.Name = "TextBoxY2";
             TextBoxY2.PlaceholderText = "y2";
-            TextBoxY2.Size = new Size(132, 45);
+            TextBoxY2.Size = new Size(170, 57);
             TextBoxY2.TabIndex = 5;
             TextBoxY2.TextAlign = HorizontalAlignment.Center;
             TextBoxY2.Visible = false;
             // 
-            // textBoxHeight
+            // TextBoxHeight
             // 
             TextBoxHeight.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxHeight.Location = new Point(359, 347);
-            TextBoxHeight.Name = "textBoxHeight";
+            TextBoxHeight.Location = new Point(542, 457);
+            TextBoxHeight.Margin = new Padding(4);
+            TextBoxHeight.Name = "TextBoxHeight";
             TextBoxHeight.PlaceholderText = "Высота";
-            TextBoxHeight.Size = new Size(132, 45);
+            TextBoxHeight.Size = new Size(170, 57);
             TextBoxHeight.TabIndex = 7;
             TextBoxHeight.TextAlign = HorizontalAlignment.Center;
             TextBoxHeight.Visible = false;
             // 
-            // textBoxWidth
+            // TextBoxWidth
             // 
             TextBoxWidth.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxWidth.Location = new Point(170, 347);
-            TextBoxWidth.Name = "textBoxWidth";
+            TextBoxWidth.Location = new Point(296, 457);
+            TextBoxWidth.Margin = new Padding(4);
+            TextBoxWidth.Name = "TextBoxWidth";
             TextBoxWidth.PlaceholderText = "Ширина";
-            TextBoxWidth.Size = new Size(132, 45);
+            TextBoxWidth.Size = new Size(170, 57);
             TextBoxWidth.TabIndex = 6;
             TextBoxWidth.TextAlign = HorizontalAlignment.Center;
             TextBoxWidth.Visible = false;
             // 
-            // textBoxY1
+            // TextBoxY1
             // 
             TextBoxY1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            TextBoxY1.Location = new Point(359, 206);
-            TextBoxY1.Name = "textBoxY1";
+            TextBoxY1.Location = new Point(542, 277);
+            TextBoxY1.Margin = new Padding(4);
+            TextBoxY1.Name = "TextBoxY1";
             TextBoxY1.PlaceholderText = "y1";
-            TextBoxY1.Size = new Size(132, 45);
+            TextBoxY1.Size = new Size(170, 57);
             TextBoxY1.TabIndex = 3;
             TextBoxY1.TextAlign = HorizontalAlignment.Center;
             TextBoxY1.Visible = false;
@@ -142,18 +151,19 @@
             // 
             ParameterTipLabel.AutoSize = true;
             ParameterTipLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            ParameterTipLabel.Location = new Point(60, 148);
+            ParameterTipLabel.Location = new Point(78, 194);
+            ParameterTipLabel.Margin = new Padding(4, 0, 4, 0);
             ParameterTipLabel.Name = "ParameterTipLabel";
-            ParameterTipLabel.Size = new Size(357, 38);
+            ParameterTipLabel.Size = new Size(481, 51);
             ParameterTipLabel.TabIndex = 14;
             ParameterTipLabel.Text = "Параметры (целые числа):";
             ParameterTipLabel.Visible = false;
             // 
             // CreateFigureForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(589, 524);
+            ClientSize = new Size(766, 671);
             Controls.Add(ParameterTipLabel);
             Controls.Add(TextBoxY1);
             Controls.Add(TextBoxWidth);
@@ -164,6 +174,7 @@
             Controls.Add(FigureLabel);
             Controls.Add(TextBoxX1);
             Controls.Add(FigureTypeComboBox);
+            Margin = new Padding(4);
             Name = "CreateFigureForm";
             Text = "Создание фигуры";
             ResumeLayout(false);
