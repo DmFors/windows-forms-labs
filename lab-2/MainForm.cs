@@ -42,10 +42,41 @@ namespace lab_2
 
         private void ShowUserChoiceButton_Click(object sender, EventArgs e) // нажата кнопка посмотреть
         {
-            if (!string.IsNullOrEmpty(_selectedLineType) && !string.IsNullOrEmpty(_selectedFigureType))
+            if (CheckUserInput())
             {
                 UserChoiceTextBox.Text = $"Тип линии: {_selectedLineType}{Environment.NewLine}Тип фигуры: {_selectedFigureType}";
             }
+        }
+
+        /// <summary>
+        /// Проверяет ввод пользователя и уведомляет в случае ошибок
+        /// </summary>
+        /// <returns>true - ввод правильный, false - ввод не правильный</returns>
+        private bool CheckUserInput()
+        {
+            string message;
+            if (string.IsNullOrEmpty(_selectedLineType))
+            {
+                if (LineTypeListBox.Items.Count == 0)
+                {
+                    message = "Добавьте хотя бы один тип линии";
+                }
+                else
+                {
+                    message = "Выберите тип линии";
+                }
+            }
+            else if (string.IsNullOrEmpty(_selectedFigureType))
+            {
+                message = "Выберите тип фигуры";
+            }
+            else
+            {
+                return true;
+            }
+
+            MessageBox.Show(message, "Ошибка");
+            return false;
         }
     }
 }

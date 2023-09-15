@@ -16,6 +16,14 @@ namespace lab_1
 
         private void РедактированиеToolStripMenuItem1_Click(object sender, EventArgs e) // нажата кнопка редактирование
         {
+            ToggleMainMenuVisibility();
+        }
+
+        /// <summary>
+        /// Переключает видимость главного меню
+        /// </summary>
+        private void ToggleMainMenuVisibility()
+        {
             authorNameLabel.Visible = !authorNameLabel.Visible;
             authorNameTextBox.Visible = !authorNameTextBox.Visible;
             saveButton.Visible = !saveButton.Visible;
@@ -23,7 +31,6 @@ namespace lab_1
 
         private void SaveButton_Click(object? sender, EventArgs e) // нажата кнопка сохранения
         {
-
             if (string.IsNullOrEmpty(authorNameTextBox.Text))
             {
                 _authorName = null;
@@ -32,7 +39,10 @@ namespace lab_1
             else // пользователь ввел автора
             {
                 _authorName = authorNameTextBox.Text;
+                authorNameTextBox.Text = null;
                 авторПрограммыToolStripMenuItem.Enabled = true;
+
+                ToggleMainMenuVisibility();
             }
         }
 
