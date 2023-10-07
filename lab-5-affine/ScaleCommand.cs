@@ -20,7 +20,7 @@
 
         public void Undo()
         {
-            _figure.Scale(1 / _kx, 1 / -_ky);
+            _figure.Scale(1 / _kx, 1 / _ky);
         }
     }
 }

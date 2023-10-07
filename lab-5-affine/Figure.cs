@@ -2,12 +2,17 @@
 {
     public class Figure
     {
+        private int _formWidth;
+        private int _formHeight;
+
         public List<FigurePoint> FigurePoints { get; protected set; }
         public int PivotIndex { get; protected set; }
 
-        public Figure(List<FigurePoint> points)
+        public Figure(List<FigurePoint> points, int formWidth = -1, int formHeight = -1)
         {
             FigurePoints = points;
+            _formWidth = formWidth;
+            _formHeight = formHeight;
         }
 
         public void SetPivotIndex(int pivotIndex)
@@ -30,13 +35,14 @@
 
         private void DrawPivotPoint(Graphics graphics, Pen pen)
         {
-            Size pointSize = new Size((int)pen.Width, (int)pen.Width);
+            int pointWidth = (int)(pen.Width * 2);
             Point pivotPoint = FigurePoints[PivotIndex].Point;
-            graphics.FillRectangle(new SolidBrush(Color.Red), new Rectangle(new Point(pivotPoint.X - pointSize.Width / 2, pivotPoint.Y - pointSize.Height / 2), pointSize));
+            graphics.FillRectangle(new SolidBrush(Color.Red), pivotPoint.X - pointWidth / 2, pivotPoint.Y - pointWidth / 2, pointWidth, pointWidth);
         }
 
-        public bool Shift(int dx = 0, int dy = 0)
+        public void Shift(int dx = 0, int dy = 0)
         {
+            List<Point> newPoints = new();
             for (int i = 0; i < FigurePoints.Count; i++)
             {
                 Point currentPoint = FigurePoints[i].Point;
@@ -44,17 +50,22 @@
                 int x = currentPoint.X + dx;
                 int y = currentPoint.Y + dy;
 
-                FigurePoints[i].Point = new Point(x, y);
+                Point newPoint = new Point(x, y);
+
+                CheckPointInsideForm(newPoint);
+
+                newPoints.Add(newPoint);
             }
-            return true;
+            ReplacePoints(newPoints);
         }
 
-        public bool Rotate(double degree)
+        public void Rotate(double degree)
         {
             double radian = DegreeToRadian(degree);
 
             Point pivotPoint = FigurePoints[PivotIndex].Point;
 
+            List<Point> newPoints = new();
             for (int i = 0; i < FigurePoints.Count; i++)
             {
                 Point currentPoint = FigurePoints[i].Point;
@@ -65,16 +76,19 @@
                 int x = (int)Math.Round(dx * Math.Cos(radian) - dy * Math.Sin(radian) + pivotPoint.X);
                 int y = (int)Math.Round(dx * Math.Sin(radian) + dy * Math.Cos(radian) + pivotPoint.Y);
 
-                FigurePoints[i].Point = new Point(x, y);
-            }
+                Point newPoint = new Point(x, y);
 
-            return true;
+                CheckPointInsideForm(newPoint);
+                newPoints.Add(newPoint);
+            }
+            ReplacePoints(newPoints);
         }
 
         public void Scale(double kx, double ky)
         {
             Point pivotPoint = FigurePoints[PivotIndex].Point;
 
+            List<Point> newPoints = new();
             for (int i = 0; i < FigurePoints.Count; i++)
             {
                 Point currentPoint = FigurePoints[i].Point;
@@ -85,7 +99,36 @@
                 int x = (int)Math.Round(dx / kx + pivotPoint.X);
                 int y = (int)Math.Round(dy / ky + pivotPoint.Y);
 
-                FigurePoints[i].Point = new Point(x, y);
+                Point newPoint = new Point(x, y);
+                CheckPointInsideForm(newPoint);
+                newPoints.Add(newPoint);
+            }
+            ReplacePoints(newPoints);
+        }
+
+        private void ReplacePoints(List<Point> newPoints)
+        {
+            if (newPoints.Count > FigurePoints.Count)
+            {
+                return;
+            }
+
+            for (int i = 0; i < newPoints.Count; i++)
+            {
+                FigurePoints[i].Point = newPoints[i];
+            }
+        }
+
+        private void CheckPointInsideForm(Point newPoint)
+        {
+            if (_formWidth < 0 || _formHeight < 0)
+            {
+                return;
+            }
+
+            if (newPoint.X < 0 || newPoint.X > _formWidth || newPoint.Y < 0 || newPoint.Y > _formHeight)
+            {
+                throw new Exception("Фигура выходит за пределы формы.");
             }
         }
 
