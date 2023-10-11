@@ -6,18 +6,13 @@
         private int _formHeight;
 
         public List<FigurePoint> FigurePoints { get; protected set; }
-        public int PivotIndex { get; protected set; }
+        public int PivotIndex { get; set; }
 
         public Figure(List<FigurePoint> points, int formWidth = -1, int formHeight = -1)
         {
             FigurePoints = points;
             _formWidth = formWidth;
             _formHeight = formHeight;
-        }
-
-        public void SetPivotIndex(int pivotIndex)
-        {
-            PivotIndex = pivotIndex;
         }
 
         public void Draw(Graphics graphics, Pen pen)
@@ -42,99 +37,104 @@
 
         public void Shift(int dx = 0, int dy = 0)
         {
-            List<Point> newPoints = new();
-            for (int i = 0; i < FigurePoints.Count; i++)
+            List<FigurePoint> tempPoints = MakeCopyOfPoints();
+
+            for (int i = 0; i < tempPoints.Count; i++)
             {
-                Point currentPoint = FigurePoints[i].Point;
+                FigurePoint currentPoint = tempPoints[i];
 
-                int x = currentPoint.X + dx;
-                int y = currentPoint.Y + dy;
+                currentPoint.X = currentPoint.X + dx;
+                currentPoint.Y = currentPoint.Y + dy;
 
-                Point newPoint = new Point(x, y);
-
-                CheckPointInsideForm(newPoint);
-
-                newPoints.Add(newPoint);
+                if (!IsPointInsideForm(currentPoint.Point))
+                {
+                    throw new Exception("Фигура выходит за пределы формы.");
+                }
             }
-            ReplacePoints(newPoints);
+
+            RestoreCopyOfPoints(tempPoints);
         }
 
         public void Rotate(double degree)
         {
+            List<FigurePoint> tempPoints = MakeCopyOfPoints();
+
+            FigurePoint pivotPoint = FigurePoints[PivotIndex];
             double radian = DegreeToRadian(degree);
-
-            Point pivotPoint = FigurePoints[PivotIndex].Point;
-
-            List<Point> newPoints = new();
-            for (int i = 0; i < FigurePoints.Count; i++)
+            for (int i = 0; i < tempPoints.Count; i++)
             {
-                Point currentPoint = FigurePoints[i].Point;
+                FigurePoint currentPoint = tempPoints[i];
 
-                int dx = currentPoint.X - pivotPoint.X;
-                int dy = currentPoint.Y - pivotPoint.Y;
+                double dx = currentPoint.X - pivotPoint.X;
+                double dy = currentPoint.Y - pivotPoint.Y;
 
-                int x = (int)Math.Round(dx * Math.Cos(radian) - dy * Math.Sin(radian) + pivotPoint.X);
-                int y = (int)Math.Round(dx * Math.Sin(radian) + dy * Math.Cos(radian) + pivotPoint.Y);
+                currentPoint.X = dx * Math.Cos(radian) - dy * Math.Sin(radian) + pivotPoint.X;
+                currentPoint.Y = dx * Math.Sin(radian) + dy * Math.Cos(radian) + pivotPoint.Y;
 
-                Point newPoint = new Point(x, y);
-
-                CheckPointInsideForm(newPoint);
-                newPoints.Add(newPoint);
+                if (!IsPointInsideForm(currentPoint.Point))
+                {
+                    throw new Exception("Фигура выходит за пределы формы.");
+                }
             }
-            ReplacePoints(newPoints);
+
+            RestoreCopyOfPoints(tempPoints);
         }
 
         public void Scale(double kx, double ky)
         {
-            Point pivotPoint = FigurePoints[PivotIndex].Point;
+            List<FigurePoint> tempPoints = MakeCopyOfPoints();
 
-            List<Point> newPoints = new();
-            for (int i = 0; i < FigurePoints.Count; i++)
+            FigurePoint pivotPoint = FigurePoints[PivotIndex];
+            for (int i = 0; i < tempPoints.Count; i++)
             {
-                Point currentPoint = FigurePoints[i].Point;
+                FigurePoint currentPoint = tempPoints[i];
 
-                int dx = currentPoint.X - pivotPoint.X;
-                int dy = currentPoint.Y - pivotPoint.Y;
+                double dx = currentPoint.X - pivotPoint.X;
+                double dy = currentPoint.Y - pivotPoint.Y;
 
-                int x = (int)Math.Round(dx / kx + pivotPoint.X);
-                int y = (int)Math.Round(dy / ky + pivotPoint.Y);
+                currentPoint.X = dx / kx + pivotPoint.X;
+                currentPoint.Y = dy / ky + pivotPoint.Y;
 
-                Point newPoint = new Point(x, y);
-                CheckPointInsideForm(newPoint);
-                newPoints.Add(newPoint);
+                if (!IsPointInsideForm(currentPoint.Point))
+                {
+                    throw new Exception("Фигура выходит за пределы формы.");
+                }
             }
-            ReplacePoints(newPoints);
+
+            RestoreCopyOfPoints(tempPoints);
         }
 
-        private void ReplacePoints(List<Point> newPoints)
+        private List<FigurePoint> MakeCopyOfPoints()
         {
-            if (newPoints.Count > FigurePoints.Count)
+            List<FigurePoint> newFigurePoints = new List<FigurePoint>();
+            foreach (var point in FigurePoints)
             {
-                return;
+                newFigurePoints.Add(new FigurePoint(point.X, point.Y));
             }
+            return newFigurePoints;
+        }
 
-            for (int i = 0; i < newPoints.Count; i++)
+        private void RestoreCopyOfPoints(List<FigurePoint> tempPoints)
+        {
+            for (int i = 0; i < tempPoints.Count; i++)
             {
-                FigurePoints[i].Point = newPoints[i];
+                FigurePoints[i].X = tempPoints[i].X;
+                FigurePoints[i].Y = tempPoints[i].Y;
             }
         }
 
-        private void CheckPointInsideForm(Point newPoint)
+        private bool IsPointInsideForm(int x, int y)
         {
             if (_formWidth < 0 || _formHeight < 0)
             {
-                return;
+                return true;
             }
-
-            if (newPoint.X < 0 || newPoint.X > _formWidth || newPoint.Y < 0 || newPoint.Y > _formHeight)
-            {
-                throw new Exception("Фигура выходит за пределы формы.");
-            }
+            return x >= 0 && x <= _formWidth && y >= 0 && y <= _formHeight;
         }
 
-        private double DegreeToRadian(double degree) => degree * Math.PI / 180;
+        private bool IsPointInsideForm(Point point) => IsPointInsideForm(point.X, point.Y);
 
-        private Point ScreenToDecart(Point point, int screenWidth, int screenHeight) => new Point(point.X, screenHeight - point.Y);
+        private double DegreeToRadian(double degree) => degree * Math.PI / 180;
     }
 }
 
@@ -152,3 +152,5 @@
 
 //int xNew = (int)Math.Round((currentPoint.X - hw - dx) * Math.Cos(radian) - (hh - currentPoint.Y - dy) * Math.Sin(radian) + hw + dx);
 //int yNew = (int)Math.Round(-(currentPoint.X - hw - dx) * Math.Sin(radian) - (hh - currentPoint.Y - dy) * Math.Cos(radian) - dy + hh);
+
+//private Point ScreenToDecart(Point point, int screenWidth, int screenHeight) => new Point(point.X, screenHeight - point.Y);

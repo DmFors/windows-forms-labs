@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace lab_5_affine
 {
     public partial class MainForm : Form
@@ -25,7 +23,6 @@ namespace lab_5_affine
             _invoker.UndoStatusChanged += status => undoButton.Enabled = status;
             _invoker.RedoStatusChanged += status => redoButton.Enabled = status;
             _figure = new Figure(CreateV16Points(), ClientSize.Width, ClientSize.Height);
-            Debug.WriteLine($"init size: {ClientSize.Width}, {ClientSize.Height}");
         }
 
         private static List<FigurePoint> CreateV16Points()

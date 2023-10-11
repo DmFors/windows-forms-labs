@@ -15,12 +15,12 @@
 
         public void Execute()
         {
-            _figure.SetPivotIndex(_currentPivotIndex);
+            _figure.PivotIndex = _currentPivotIndex;
         }
 
         public void Undo()
         {
-            _figure.SetPivotIndex(_prevPivotIndex);
+            _figure.PivotIndex = _prevPivotIndex;
         }
     }
 }

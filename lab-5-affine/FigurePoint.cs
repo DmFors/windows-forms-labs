@@ -2,16 +2,17 @@
 {
     public class FigurePoint
     {
-        public Point Point { get; set; }
-        public List<FigurePoint> ConnectedPoints { get; protected set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public Point Point => new Point((int)Math.Round(X), (int)Math.Round(Y));
 
-        public FigurePoint(Point point)
+        public List<FigurePoint> ConnectedPoints { get; protected set; } = new();
+
+        public FigurePoint(double x, double y)
         {
-            Point = point;
-            ConnectedPoints = new();
+            X = x;
+            Y = y;
         }
-
-        public FigurePoint(int x, int y) : this(new Point(x, y)) { }
 
         public void ConnectTo(FigurePoint point)
         {
