@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace lab_5_affine
 {
     public partial class MainForm : Form
@@ -10,21 +12,11 @@ namespace lab_5_affine
         public MainForm()
         {
             InitializeComponent();
-            shiftDXField.Minimum = decimal.MinValue;
-            shiftDXField.Maximum = decimal.MaxValue;
             shiftDXField.Increment = 10;
-
-            shiftDYField.Minimum = decimal.MinValue;
-            shiftDYField.Maximum = decimal.MaxValue;
             shiftDYField.Increment = 10;
-
-            scaleKXField.Minimum = decimal.MinValue;
-            scaleKXField.Maximum = decimal.MaxValue;
             scaleKXField.Increment = 0.1M;
-
-            scaleKYField.Minimum = decimal.MinValue;
-            scaleKYField.Maximum = decimal.MaxValue;
             scaleKYField.Increment = 0.1M;
+            rotateDegreeField.Value = shiftDXField.Value = shiftDYField.Value = scaleKXField.Value = scaleKYField.Value = 0;
 
             _pen = new Pen(Color.Black, 5);
             _graphics = CreateGraphics();
@@ -32,7 +24,8 @@ namespace lab_5_affine
             _invoker = new Invoker();
             _invoker.UndoStatusChanged += status => undoButton.Enabled = status;
             _invoker.RedoStatusChanged += status => redoButton.Enabled = status;
-            _figure = new Figure(CreateV16Points(), Width - 20, Height - 20);
+            _figure = new Figure(CreateV16Points(), ClientSize.Width, ClientSize.Height);
+            Debug.WriteLine($"init size: {ClientSize.Width}, {ClientSize.Height}");
         }
 
         private static List<FigurePoint> CreateV16Points()

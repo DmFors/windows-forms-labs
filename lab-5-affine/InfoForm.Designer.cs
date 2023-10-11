@@ -36,10 +36,11 @@
             // 
             infoLabel.AutoSize = true;
             infoLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            infoLabel.Location = new Point(56, 94);
-            infoLabel.MaximumSize = new Size(700, 0);
+            infoLabel.Location = new Point(84, 139);
+            infoLabel.Margin = new Padding(4, 0, 4, 0);
+            infoLabel.MaximumSize = new Size(1050, 0);
             infoLabel.Name = "infoLabel";
-            infoLabel.Size = new Size(687, 144);
+            infoLabel.Size = new Size(1025, 216);
             infoLabel.TabIndex = 0;
             infoLabel.Text = "Здесь будет отображаться текст предупреждения для пользователя или ошибки.\r\n";
             // 
@@ -47,9 +48,10 @@
             // 
             okButton.AutoSize = true;
             okButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            okButton.Location = new Point(316, 380);
+            okButton.Location = new Point(474, 562);
+            okButton.Margin = new Padding(4, 4, 4, 4);
             okButton.Name = "okButton";
-            okButton.Size = new Size(112, 58);
+            okButton.Size = new Size(168, 86);
             okButton.TabIndex = 1;
             okButton.Text = "OK";
             okButton.UseVisualStyleBackColor = true;
@@ -57,13 +59,14 @@
             // 
             // InfoForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1200, 666);
             Controls.Add(okButton);
             Controls.Add(infoLabel);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "InfoForm";
-            Text = "InfoForm";
+            Text = "Информационное окно";
             ResumeLayout(false);
             PerformLayout();
         }
