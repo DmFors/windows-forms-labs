@@ -127,9 +127,9 @@
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(338, 16);
             label1.Name = "label1";
-            label1.Size = new Size(164, 48);
+            label1.Size = new Size(159, 48);
             label1.TabIndex = 13;
-            label1.Text = "Градусы:";
+            label1.Text = "Degrees:";
             // 
             // label2
             // 
