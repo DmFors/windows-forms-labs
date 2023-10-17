@@ -33,6 +33,8 @@
             файлToolStripMenuItem = new ToolStripMenuItem();
             создатьToolStripMenuItem = new ToolStripMenuItem();
             объектToolStripMenuItem = new ToolStripMenuItem();
+            отменитьToolStripMenuItem = new ToolStripMenuItem();
+            очиститьToolStripMenuItem = new ToolStripMenuItem();
             выходToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
@@ -40,6 +42,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.Highlight;
             pictureBox1.Location = new Point(0, 47);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1289, 772);
@@ -59,7 +62,7 @@
             // 
             // файлToolStripMenuItem
             // 
-            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, выходToolStripMenuItem });
+            файлToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { создатьToolStripMenuItem, отменитьToolStripMenuItem, очиститьToolStripMenuItem, выходToolStripMenuItem });
             файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             файлToolStripMenuItem.Size = new Size(69, 29);
             файлToolStripMenuItem.Text = "Файл";
@@ -68,22 +71,38 @@
             // 
             создатьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { объектToolStripMenuItem });
             создатьToolStripMenuItem.Name = "создатьToolStripMenuItem";
-            создатьToolStripMenuItem.Size = new Size(270, 34);
+            создатьToolStripMenuItem.Size = new Size(271, 34);
             создатьToolStripMenuItem.Text = "Создать";
             // 
             // объектToolStripMenuItem
             // 
             объектToolStripMenuItem.Name = "объектToolStripMenuItem";
-            объектToolStripMenuItem.Size = new Size(270, 34);
+            объектToolStripMenuItem.Size = new Size(174, 34);
             объектToolStripMenuItem.Text = "Объект";
-            объектToolStripMenuItem.Click += объектToolStripMenuItem_Click;
+            объектToolStripMenuItem.Click += ОбъектToolStripMenuItem_Click;
+            // 
+            // отменитьToolStripMenuItem
+            // 
+            отменитьToolStripMenuItem.Enabled = false;
+            отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
+            отменитьToolStripMenuItem.Size = new Size(271, 34);
+            отменитьToolStripMenuItem.Text = "Отменить действие";
+            отменитьToolStripMenuItem.Click += ОтменитьToolStripMenuItem_Click;
+            // 
+            // очиститьToolStripMenuItem
+            // 
+            очиститьToolStripMenuItem.Enabled = false;
+            очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
+            очиститьToolStripMenuItem.Size = new Size(271, 34);
+            очиститьToolStripMenuItem.Text = "Очистить";
+            очиститьToolStripMenuItem.Click += ОчиститьToolStripMenuItem_Click;
             // 
             // выходToolStripMenuItem
             // 
             выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            выходToolStripMenuItem.Size = new Size(270, 34);
+            выходToolStripMenuItem.Size = new Size(271, 34);
             выходToolStripMenuItem.Text = "Выход";
-            выходToolStripMenuItem.Click += выходToolStripMenuItem_Click;
+            выходToolStripMenuItem.Click += ВыходToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -110,5 +129,7 @@
         private ToolStripMenuItem создатьToolStripMenuItem;
         private ToolStripMenuItem объектToolStripMenuItem;
         private ToolStripMenuItem выходToolStripMenuItem;
+        private ToolStripMenuItem очиститьToolStripMenuItem;
+        private ToolStripMenuItem отменитьToolStripMenuItem;
     }
 }

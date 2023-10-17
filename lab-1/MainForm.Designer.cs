@@ -65,7 +65,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Location = new Point(0, 46);
+            menuStrip1.Location = new Point(0, 44);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(12, 4, 0, 4);
             menuStrip1.Size = new Size(1522, 24);
@@ -93,7 +93,7 @@
             menuStrip2.Location = new Point(0, 0);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.Padding = new Padding(12, 4, 0, 4);
-            menuStrip2.Size = new Size(1522, 46);
+            menuStrip2.Size = new Size(1522, 44);
             menuStrip2.TabIndex = 2;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -101,20 +101,20 @@
             // 
             файлToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { редактированиеToolStripMenuItem1, выходToolStripMenuItem1 });
             файлToolStripMenuItem1.Name = "файлToolStripMenuItem1";
-            файлToolStripMenuItem1.Size = new Size(90, 38);
+            файлToolStripMenuItem1.Size = new Size(90, 36);
             файлToolStripMenuItem1.Text = "Файл";
             // 
             // редактированиеToolStripMenuItem1
             // 
             редактированиеToolStripMenuItem1.Name = "редактированиеToolStripMenuItem1";
-            редактированиеToolStripMenuItem1.Size = new Size(359, 44);
+            редактированиеToolStripMenuItem1.Size = new Size(328, 44);
             редактированиеToolStripMenuItem1.Text = "Редактирование";
             редактированиеToolStripMenuItem1.Click += РедактированиеToolStripMenuItem1_Click;
             // 
             // выходToolStripMenuItem1
             // 
             выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
-            выходToolStripMenuItem1.Size = new Size(359, 44);
+            выходToolStripMenuItem1.Size = new Size(328, 44);
             выходToolStripMenuItem1.Text = "Выход";
             выходToolStripMenuItem1.Click += ВыходToolStripMenuItem1_Click;
             // 
@@ -122,7 +122,7 @@
             // 
             справкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { авторПрограммыToolStripMenuItem, оПрограммеToolStripMenuItem });
             справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            справкаToolStripMenuItem.Size = new Size(126, 38);
+            справкаToolStripMenuItem.Size = new Size(126, 36);
             справкаToolStripMenuItem.Text = "Справка";
             // 
             // авторПрограммыToolStripMenuItem
@@ -153,6 +153,7 @@
             // 
             authorNameLabel.AutoSize = true;
             authorNameLabel.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            authorNameLabel.ForeColor = Color.White;
             authorNameLabel.Location = new Point(25, 186);
             authorNameLabel.Margin = new Padding(4, 0, 4, 0);
             authorNameLabel.Name = "authorNameLabel";
@@ -164,7 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
+            BackColor = SystemColors.MenuHighlight;
             ClientSize = new Size(1522, 1075);
             Controls.Add(authorNameLabel);
             Controls.Add(authorNameTextBox);

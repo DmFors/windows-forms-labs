@@ -79,6 +79,7 @@
             // 
             FigureLabel.AutoSize = true;
             FigureLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            FigureLabel.ForeColor = Color.White;
             FigureLabel.Location = new Point(78, 106);
             FigureLabel.Margin = new Padding(4, 0, 4, 0);
             FigureLabel.Name = "FigureLabel";
@@ -151,6 +152,7 @@
             // 
             ParameterTipLabel.AutoSize = true;
             ParameterTipLabel.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            ParameterTipLabel.ForeColor = Color.White;
             ParameterTipLabel.Location = new Point(78, 194);
             ParameterTipLabel.Margin = new Padding(4, 0, 4, 0);
             ParameterTipLabel.Name = "ParameterTipLabel";
@@ -163,6 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Highlight;
             ClientSize = new Size(766, 671);
             Controls.Add(ParameterTipLabel);
             Controls.Add(TextBoxY1);

@@ -1,4 +1,5 @@
 using System.Drawing.Drawing2D;
+
 namespace lab_3
 {
     public partial class MainForm : Form

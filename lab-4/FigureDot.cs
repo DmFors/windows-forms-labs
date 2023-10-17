@@ -8,7 +8,7 @@
         public FigureDot(Brush brush, int x, int y)
         {
             _brush = brush;
-            _rect = new Rectangle(x, y, 10, 10);
+            _rect = new Rectangle(x, y, 1, 1);
         }
 
         public override void Draw(Graphics graphics)

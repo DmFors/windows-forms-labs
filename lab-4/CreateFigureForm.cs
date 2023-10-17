@@ -15,8 +15,8 @@
         {
             InitializeComponent();
 
-            _pen = new Pen(Color.Black, 10);
-            _brush = new SolidBrush(Color.Black);
+            _pen = new Pen(Color.White, 10);
+            _brush = new SolidBrush(Color.White);
 
             FigureTypeComboBox.Items.AddRange(_figureTypeComboBoxItems);
         }
