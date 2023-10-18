@@ -14,7 +14,7 @@ namespace lab_5_affine
             _pen = new Pen(Color.Black, 5);
             _graphics = CreateGraphics();
 
-            _figure = new Figure(CreateV5Points(), ClientSize.Width, ClientSize.Height);
+            _figure = new Figure(CreateV5Points(), this);
         }
 
         private static List<FigurePoint> CreateV5Points()

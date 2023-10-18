@@ -2,17 +2,15 @@
 {
     public class Figure
     {
-        private int _formWidth;
-        private int _formHeight;
+        private Form _canvas;
 
         public List<FigurePoint> FigurePoints { get; protected set; }
         public int PivotIndex { get; set; } = 0;
 
-        public Figure(List<FigurePoint> points, int formWidth = -1, int formHeight = -1)
+        public Figure(List<FigurePoint> points, Form canvas)
         {
             FigurePoints = points;
-            _formWidth = formWidth;
-            _formHeight = formHeight;
+            _canvas = canvas;
         }
 
         // Рисует фигуру на холсте, соединяя точки
@@ -129,11 +127,11 @@
         // Проверяет, находится ли точка в пределах формы
         private bool IsPointInsideForm(int x, int y)
         {
-            if (_formWidth < 0 || _formHeight < 0)
+            if (_canvas.ClientSize.Width < 0 || _canvas.ClientSize.Height < 0)
             {
                 return true;
             }
-            return x >= 0 && x <= _formWidth && y >= 0 && y <= _formHeight;
+            return x >= 0 && x <= _canvas.ClientSize.Width && y >= 0 && y <= _canvas.ClientSize.Height;
         }
 
         private bool IsPointInsideForm(Point point) => IsPointInsideForm(point.X, point.Y);
