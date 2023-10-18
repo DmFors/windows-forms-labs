@@ -30,9 +30,6 @@
         {
             shift = new Button();
             rotateButton = new Button();
-            changePivot = new Button();
-            undoButton = new Button();
-            redoButton = new Button();
             rotateDegreeField = new NumericUpDown();
             label1 = new Label();
             label2 = new Label();
@@ -54,7 +51,7 @@
             // shift
             // 
             shift.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            shift.Location = new Point(684, 125);
+            shift.Location = new Point(374, 118);
             shift.Name = "shift";
             shift.Size = new Size(237, 84);
             shift.TabIndex = 7;
@@ -65,7 +62,7 @@
             // rotateButton
             // 
             rotateButton.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            rotateButton.Location = new Point(338, 125);
+            rotateButton.Location = new Point(28, 118);
             rotateButton.Name = "rotateButton";
             rotateButton.Size = new Size(310, 84);
             rotateButton.TabIndex = 4;
@@ -73,47 +70,12 @@
             rotateButton.UseVisualStyleBackColor = true;
             rotateButton.Click += rotateButton_Click;
             // 
-            // changePivot
-            // 
-            changePivot.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            changePivot.Location = new Point(12, 125);
-            changePivot.Name = "changePivot";
-            changePivot.Size = new Size(290, 84);
-            changePivot.TabIndex = 2;
-            changePivot.Text = "Set pivot";
-            changePivot.UseVisualStyleBackColor = true;
-            changePivot.Click += changePivot_Click;
-            // 
-            // undoButton
-            // 
-            undoButton.Enabled = false;
-            undoButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            undoButton.Location = new Point(12, 16);
-            undoButton.Name = "undoButton";
-            undoButton.Size = new Size(136, 66);
-            undoButton.TabIndex = 0;
-            undoButton.Text = "Undo";
-            undoButton.UseVisualStyleBackColor = true;
-            undoButton.Click += undoButton_Click;
-            // 
-            // redoButton
-            // 
-            redoButton.Enabled = false;
-            redoButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            redoButton.Location = new Point(166, 16);
-            redoButton.Name = "redoButton";
-            redoButton.Size = new Size(136, 66);
-            redoButton.TabIndex = 1;
-            redoButton.Text = "Redo";
-            redoButton.UseVisualStyleBackColor = true;
-            redoButton.Click += redoButton_Click;
-            // 
             // rotateDegreeField
             // 
             rotateDegreeField.DecimalPlaces = 1;
             rotateDegreeField.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             rotateDegreeField.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            rotateDegreeField.Location = new Point(516, 15);
+            rotateDegreeField.Location = new Point(206, 8);
             rotateDegreeField.Maximum = new decimal(new int[] { 360, 0, 0, 0 });
             rotateDegreeField.Minimum = new decimal(new int[] { 360, 0, 0, int.MinValue });
             rotateDegreeField.Name = "rotateDegreeField";
@@ -125,7 +87,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(338, 16);
+            label1.Location = new Point(28, 9);
             label1.Name = "label1";
             label1.Size = new Size(159, 48);
             label1.TabIndex = 13;
@@ -135,7 +97,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(684, 9);
+            label2.Location = new Point(374, 2);
             label2.Name = "label2";
             label2.Size = new Size(66, 48);
             label2.TabIndex = 15;
@@ -146,7 +108,7 @@
             shiftDXField.DecimalPlaces = 1;
             shiftDXField.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             shiftDXField.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            shiftDXField.Location = new Point(759, 8);
+            shiftDXField.Location = new Point(449, 1);
             shiftDXField.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             shiftDXField.Minimum = new decimal(new int[] { 10000, 0, 0, int.MinValue });
             shiftDXField.Name = "shiftDXField";
@@ -158,7 +120,7 @@
             // 
             label.AutoSize = true;
             label.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label.Location = new Point(684, 66);
+            label.Location = new Point(374, 59);
             label.Name = "label";
             label.Size = new Size(66, 48);
             label.TabIndex = 17;
@@ -169,7 +131,7 @@
             shiftDYField.DecimalPlaces = 1;
             shiftDYField.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             shiftDYField.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            shiftDYField.Location = new Point(759, 64);
+            shiftDYField.Location = new Point(449, 57);
             shiftDYField.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             shiftDYField.Minimum = new decimal(new int[] { 10000, 0, 0, int.MinValue });
             shiftDYField.Name = "shiftDYField";
@@ -182,7 +144,7 @@
             scaleKXField.DecimalPlaces = 1;
             scaleKXField.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             scaleKXField.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            scaleKXField.Location = new Point(1056, 8);
+            scaleKXField.Location = new Point(746, 1);
             scaleKXField.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             scaleKXField.Minimum = new decimal(new int[] { 10000, 0, 0, int.MinValue });
             scaleKXField.Name = "scaleKXField";
@@ -195,7 +157,7 @@
             scaleKYField.DecimalPlaces = 1;
             scaleKYField.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             scaleKYField.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            scaleKYField.Location = new Point(1056, 63);
+            scaleKYField.Location = new Point(746, 56);
             scaleKYField.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             scaleKYField.Minimum = new decimal(new int[] { 10000, 0, 0, int.MinValue });
             scaleKYField.Name = "scaleKYField";
@@ -206,7 +168,7 @@
             // scaleButton
             // 
             scaleButton.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            scaleButton.Location = new Point(982, 125);
+            scaleButton.Location = new Point(672, 118);
             scaleButton.Name = "scaleButton";
             scaleButton.Size = new Size(239, 84);
             scaleButton.TabIndex = 10;
@@ -218,7 +180,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(982, 65);
+            label4.Location = new Point(672, 58);
             label4.Name = "label4";
             label4.Size = new Size(63, 48);
             label4.TabIndex = 21;
@@ -228,7 +190,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(982, 9);
+            label3.Location = new Point(672, 2);
             label3.Name = "label3";
             label3.Size = new Size(63, 48);
             label3.TabIndex = 19;
@@ -250,9 +212,6 @@
             Controls.Add(shiftDXField);
             Controls.Add(label1);
             Controls.Add(rotateDegreeField);
-            Controls.Add(redoButton);
-            Controls.Add(undoButton);
-            Controls.Add(changePivot);
             Controls.Add(rotateButton);
             Controls.Add(shift);
             Name = "MainForm";
@@ -272,9 +231,6 @@
 
         private Button shift;
         private Button rotateButton;
-        private Button changePivot;
-        private Button undoButton;
-        private Button redoButton;
         private NumericUpDown rotateDegreeField;
         private Label label1;
         private Label label2;

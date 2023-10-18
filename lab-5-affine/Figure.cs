@@ -6,7 +6,7 @@
         private int _formHeight;
 
         public List<FigurePoint> FigurePoints { get; protected set; }
-        public int PivotIndex { get; set; }
+        public int PivotIndex { get; set; } = 0;
 
         public Figure(List<FigurePoint> points, int formWidth = -1, int formHeight = -1)
         {
@@ -15,6 +15,7 @@
             _formHeight = formHeight;
         }
 
+        // Рисует фигуру на холсте, соединяя точки
         public void Draw(Graphics graphics, Pen pen)
         {
             foreach (var figurePoint in FigurePoints)
@@ -25,17 +26,17 @@
                 }
             }
 
-            DrawPivotPoint(graphics, pen);
+            DrawPivotPoint(graphics, (int)pen.Width * 2);
         }
 
-        private void DrawPivotPoint(Graphics graphics, Pen pen)
+        // Рисует опорную точку
+        private void DrawPivotPoint(Graphics graphics, int pointWidth)
         {
-            int pointWidth = (int)(pen.Width * 2);
             Point pivotPoint = FigurePoints[PivotIndex].Point;
             graphics.FillRectangle(new SolidBrush(Color.Red), pivotPoint.X - pointWidth / 2, pivotPoint.Y - pointWidth / 2, pointWidth, pointWidth);
         }
 
-        public void Shift(int dx = 0, int dy = 0)
+        public void Shift(int dx, int dy)
         {
             List<FigurePoint> tempPoints = MakeCopyOfPoints();
 
@@ -104,6 +105,7 @@
             RestoreCopyOfPoints(tempPoints);
         }
 
+        // Создает и возвращает копию текущих точек фигуры, не затрагивая связи между ними (ConnectedPoints)
         private List<FigurePoint> MakeCopyOfPoints()
         {
             List<FigurePoint> newFigurePoints = new List<FigurePoint>();
@@ -114,15 +116,17 @@
             return newFigurePoints;
         }
 
-        private void RestoreCopyOfPoints(List<FigurePoint> tempPoints)
+        // Применяет переданную копию точек фигуры, не затрагивая связи между ними (ConnectedPoints)
+        private void RestoreCopyOfPoints(List<FigurePoint> newFigurePoints)
         {
-            for (int i = 0; i < tempPoints.Count; i++)
+            for (int i = 0; i < newFigurePoints.Count; i++)
             {
-                FigurePoints[i].X = tempPoints[i].X;
-                FigurePoints[i].Y = tempPoints[i].Y;
+                FigurePoints[i].X = newFigurePoints[i].X;
+                FigurePoints[i].Y = newFigurePoints[i].Y;
             }
         }
 
+        // Проверяет, находится ли точка в пределах формы
         private bool IsPointInsideForm(int x, int y)
         {
             if (_formWidth < 0 || _formHeight < 0)
@@ -134,23 +138,7 @@
 
         private bool IsPointInsideForm(Point point) => IsPointInsideForm(point.X, point.Y);
 
+        // Конвертирует градусы в радианы
         private double DegreeToRadian(double degree) => degree * Math.PI / 180;
     }
 }
-
-//int xNew = (int)Math.Round(-pivotPoint.X + pivotPoint.X * Math.Cos(radian) + currentPoint.X * Math.Cos(radian) - pivotPoint.Y * Math.Sin(radian) - currentPoint.Y * Math.Sin(radian));
-//int yNew = (int)Math.Round(-pivotPoint.Y + pivotPoint.Y * Math.Cos(radian) + currentPoint.Y * Math.Cos(radian) + pivotPoint.X * Math.Sin(radian) + currentPoint.X * Math.Sin(radian));
-
-//xNew += height;
-//Debug.WriteLine($"var 1: ({x},{y}). var 2: ({xNew},{yNew})");
-
-//int hw = width / 2;
-//int hh = height / 2;
-
-//int dx = pivotPoint.X - hw;
-//int dy = hh - pivotPoint.X;
-
-//int xNew = (int)Math.Round((currentPoint.X - hw - dx) * Math.Cos(radian) - (hh - currentPoint.Y - dy) * Math.Sin(radian) + hw + dx);
-//int yNew = (int)Math.Round(-(currentPoint.X - hw - dx) * Math.Sin(radian) - (hh - currentPoint.Y - dy) * Math.Cos(radian) - dy + hh);
-
-//private Point ScreenToDecart(Point point, int screenWidth, int screenHeight) => new Point(point.X, screenHeight - point.Y);
