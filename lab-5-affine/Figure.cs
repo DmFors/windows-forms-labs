@@ -34,6 +34,7 @@
             graphics.FillRectangle(new SolidBrush(Color.Red), pivotPoint.X - pointWidth / 2, pivotPoint.Y - pointWidth / 2, pointWidth, pointWidth);
         }
 
+        // Сдвиг фигуры
         public void Shift(int dx, int dy)
         {
             List<FigurePoint> tempPoints = MakeCopyOfPoints();
@@ -54,6 +55,7 @@
             RestoreCopyOfPoints(tempPoints);
         }
 
+        // Поворот фигуры
         public void Rotate(double degree)
         {
             List<FigurePoint> tempPoints = MakeCopyOfPoints();
@@ -79,6 +81,7 @@
             RestoreCopyOfPoints(tempPoints);
         }
 
+        // Масштабирование фигуры
         public void Scale(double kx, double ky)
         {
             List<FigurePoint> tempPoints = MakeCopyOfPoints();
