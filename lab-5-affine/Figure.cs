@@ -68,8 +68,8 @@
                 double dx = currentPoint.X - pivotPoint.X;
                 double dy = currentPoint.Y - pivotPoint.Y;
 
-                currentPoint.X = dx * Math.Cos(radian) - dy * Math.Sin(radian) + pivotPoint.X;
-                currentPoint.Y = dx * Math.Sin(radian) + dy * Math.Cos(radian) + pivotPoint.Y;
+                currentPoint.X = dx * Math.Cos(radian) + dy * Math.Sin(radian) + pivotPoint.X;
+                currentPoint.Y = -dx * Math.Sin(radian) + dy * Math.Cos(radian) + pivotPoint.Y;
 
                 if (!IsPointInsideForm(currentPoint.Point))
                 {
