@@ -1,4 +1,4 @@
-namespace lab_6_fill
+namespace lab_5_temp
 {
     internal static class Program
     {
