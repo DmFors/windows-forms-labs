@@ -66,44 +66,36 @@
 
         public void FillWithSeed(Color borderColor, Color fillColor, Point seedPoint)
         {
-            if (!IsInPictureBox(seedPoint) || IsPixelOfColor(seedPoint, borderColor) || IsPixelOfColor(seedPoint, fillColor))
+            if (!CanFillPoint(borderColor, fillColor, seedPoint))
             {
-                return;
+                return; // TODO: ui error
             }
 
-            Stack<Point> stack = new Stack<Point>();
-            stack.Push(seedPoint);
+            Stack<Point> pointStack = new Stack<Point>();
+            pointStack.Push(seedPoint);
 
-            while (stack.Count > 0)
+            while (pointStack.Count > 0)
             {
-                Point currentPoint = stack.Pop();
-                int x = currentPoint.X;
-                int y = currentPoint.Y;
+                Point point = pointStack.Pop();
 
-                _bitmap.SetPixel(x, y, fillColor);
-                //_pictureBox.Refresh();
-
-                // Check and push neighboring points
-                Point[] neighbors = new Point[]
+                if (CanFillPoint(borderColor, fillColor, point))
                 {
-            new Point(x, y - 1), // Up
-            new Point(x, y + 1), // Down
-            new Point(x - 1, y), // Left
-            new Point(x + 1, y)  // Right
-                };
+                    _bitmap.SetPixel(point.X, point.Y, fillColor); // fill point
+                    if (DateTime.Now.Ticks % 100 == 0) _pictureBox.Invoke(_pictureBox.Invalidate);
 
-                foreach (var neighbor in neighbors)
-                {
-                    if (IsInPictureBox(neighbor) && !IsPixelOfColor(neighbor, borderColor) && !IsPixelOfColor(neighbor, fillColor))
-                    {
-                        stack.Push(neighbor);
-                    }
+                    pointStack.Push(new Point(point.X, point.Y - 1)); // up
+                    pointStack.Push(new Point(point.X, point.Y + 1)); // down
+                    pointStack.Push(new Point(point.X - 1, point.Y)); // left
+                    pointStack.Push(new Point(point.X + 1, point.Y)); // right
                 }
             }
-            _pictureBox.Invalidate();
+
+            _pictureBox.Invoke(_pictureBox.Invalidate);
             MessageBox.Show("Закраска завершена!", "Сообщение", MessageBoxButtons.OK);
         }
 
-        private bool IsInPictureBox(Point p) => p.X >= 0 || p.X <= _pictureBox.Width || p.Y >= 0 || p.Y <= _pictureBox.Height;
+        private bool CanFillPoint(Color borderColor, Color fillColor, Point point) => IsInPictureBox(point) && !IsPixelOfColor(point, borderColor) && !IsPixelOfColor(point, fillColor);
+
+        private bool IsInPictureBox(Point p) => p.X >= 0 && p.X < _pictureBox.Width && p.Y >= 0 && p.Y < _pictureBox.Height;
     }
 }

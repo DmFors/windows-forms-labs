@@ -24,17 +24,19 @@ namespace lab_6_fill
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             //_painter.FillLineByLineScanning(Color.Black, Color.Pink);
-            _painter.FillWithSeed(Color.Black, Color.Pink, new Point(50, 3));
+            button1.Enabled = false;
+            await Task.Run(() => _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75)));
+            button1.Enabled = true;
         }
 
         private static List<FigurePoint> CreateTrianglePoints()
         {
             FigurePoint pt1 = new FigurePoint(0, 0);
-            FigurePoint pt2 = new FigurePoint(1000, 0);
-            FigurePoint pt3 = new FigurePoint(0, 1000);
+            FigurePoint pt2 = new FigurePoint(300, 0);
+            FigurePoint pt3 = new FigurePoint(0, 300);
 
             pt1.ConnectTo(pt2);
             pt2.ConnectTo(pt3);
@@ -66,6 +68,33 @@ namespace lab_6_fill
             pt9.ConnectTo(pt1);
 
             return new() { pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9 };
+        }
+
+        private static List<FigurePoint> CreateV666Points()
+        {
+            FigurePoint pt1 = new FigurePoint(25, 30);
+            FigurePoint pt2 = new FigurePoint(60, 30);
+            FigurePoint pt3 = new FigurePoint(25, 80);
+            FigurePoint pt4 = new FigurePoint(25, 110);
+            FigurePoint pt5 = new FigurePoint(60, 110);
+            FigurePoint pt6 = new FigurePoint(160, 110);
+            FigurePoint pt7 = new FigurePoint(195, 110);
+            FigurePoint pt8 = new FigurePoint(195, 80);
+            FigurePoint pt9 = new FigurePoint(160, 30);
+            FigurePoint pt10 = new FigurePoint(195, 30);
+
+            pt1.ConnectTo(pt2);
+            pt2.ConnectTo(pt3);
+            pt3.ConnectTo(pt4);
+            pt4.ConnectTo(pt5);
+            pt5.ConnectTo(pt6);
+            pt6.ConnectTo(pt7);
+            pt7.ConnectTo(pt8);
+            pt8.ConnectTo(pt9);
+            pt9.ConnectTo(pt10);
+            pt10.ConnectTo(pt1);
+
+            return new() { pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9, pt10 };
         }
     }
 }
