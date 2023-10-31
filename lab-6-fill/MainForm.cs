@@ -12,12 +12,12 @@ namespace lab_6_fill
             _painter = new Painter(pictureBox1);
 
             Figure _figure1 = new Figure(CreateTrianglePoints());
-            _figure1.Shift(dx: 200, dy: 200);
+            _figure1.Shift(dx: 0, dy: 0);
             _painter.DrawFigure(_figure1, _pen);
 
-            Figure _figure2 = new Figure(CreateV16Points());
-            _figure2.Shift(dy: 400);
-            _painter.DrawFigure(_figure2, _pen);
+            //Figure _figure2 = new Figure(CreateV16Points());
+            //_figure2.Shift(dy: 400);
+            //_painter.DrawFigure(_figure2, _pen);
         }
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
@@ -27,14 +27,14 @@ namespace lab_6_fill
         private void button1_Click(object sender, EventArgs e)
         {
             //_painter.FillLineByLineScanning(Color.Black, Color.Pink);
-            _painter.FillWithSeed(Color.Black, Color.Pink, new Point(210, 210));
+            _painter.FillWithSeed(Color.Black, Color.Pink, new Point(50, 3));
         }
 
         private static List<FigurePoint> CreateTrianglePoints()
         {
             FigurePoint pt1 = new FigurePoint(0, 0);
-            FigurePoint pt2 = new FigurePoint(100, 0);
-            FigurePoint pt3 = new FigurePoint(0, 100);
+            FigurePoint pt2 = new FigurePoint(1000, 0);
+            FigurePoint pt3 = new FigurePoint(0, 1000);
 
             pt1.ConnectTo(pt2);
             pt2.ConnectTo(pt3);

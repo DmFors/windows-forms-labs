@@ -66,32 +66,42 @@
 
         public void FillWithSeed(Color borderColor, Color fillColor, Point seedPoint)
         {
-            // TODO: check seed point
-            Queue<Point> points = new();
-            points.Enqueue(seedPoint);
-
-            while (points.Count > 0)
+            if (!IsInPictureBox(seedPoint) || IsPixelOfColor(seedPoint, borderColor) || IsPixelOfColor(seedPoint, fillColor))
             {
-                Point currentPoint = points.Dequeue();
-                _bitmap.SetPixel(currentPoint.X, currentPoint.Y, fillColor);
-                _pictureBox.Refresh();
+                return;
+            }
 
-                Point pointUp = new Point(seedPoint.X, seedPoint.Y + 1);
-                Point pointDown = new Point(seedPoint.X, seedPoint.Y - 1);
-                Point pointLeft = new Point(seedPoint.X - 1, seedPoint.Y);
-                Point pointRight = new Point(seedPoint.X + 1, seedPoint.Y);
+            Stack<Point> stack = new Stack<Point>();
+            stack.Push(seedPoint);
 
-                Point[] neighbors = new Point[] { pointUp, pointDown, pointLeft, pointRight };
-                foreach (Point neighbor in neighbors)
+            while (stack.Count > 0)
+            {
+                Point currentPoint = stack.Pop();
+                int x = currentPoint.X;
+                int y = currentPoint.Y;
+
+                _bitmap.SetPixel(x, y, fillColor);
+                //_pictureBox.Refresh();
+
+                // Check and push neighboring points
+                Point[] neighbors = new Point[]
+                {
+            new Point(x, y - 1), // Up
+            new Point(x, y + 1), // Down
+            new Point(x - 1, y), // Left
+            new Point(x + 1, y)  // Right
+                };
+
+                foreach (var neighbor in neighbors)
                 {
                     if (IsInPictureBox(neighbor) && !IsPixelOfColor(neighbor, borderColor) && !IsPixelOfColor(neighbor, fillColor))
                     {
-                        points.Enqueue(neighbor);
+                        stack.Push(neighbor);
                     }
                 }
             }
-
             _pictureBox.Invalidate();
+            MessageBox.Show("Закраска завершена!", "Сообщение", MessageBoxButtons.OK);
         }
 
         private bool IsInPictureBox(Point p) => p.X >= 0 || p.X <= _pictureBox.Width || p.Y >= 0 || p.Y <= _pictureBox.Height;
