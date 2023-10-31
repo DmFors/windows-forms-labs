@@ -66,25 +66,34 @@
 
         public void FillWithSeed(Color borderColor, Color fillColor, Point seedPoint)
         {
-            if (!IsInPictureBox(seedPoint) || IsPixelOfColor(seedPoint, borderColor) || IsPixelOfColor(seedPoint, fillColor))
+            // TODO: check seed point
+            Queue<Point> points = new();
+            points.Enqueue(seedPoint);
+
+            while (points.Count > 0)
             {
-                return;
+                Point currentPoint = points.Dequeue();
+                _bitmap.SetPixel(currentPoint.X, currentPoint.Y, fillColor);
+                _pictureBox.Refresh();
+
+                Point pointUp = new Point(seedPoint.X, seedPoint.Y + 1);
+                Point pointDown = new Point(seedPoint.X, seedPoint.Y - 1);
+                Point pointLeft = new Point(seedPoint.X - 1, seedPoint.Y);
+                Point pointRight = new Point(seedPoint.X + 1, seedPoint.Y);
+
+                Point[] neighbors = new Point[] { pointUp, pointDown, pointLeft, pointRight };
+                foreach (Point neighbor in neighbors)
+                {
+                    if (IsInPictureBox(neighbor) && !IsPixelOfColor(neighbor, borderColor) && !IsPixelOfColor(neighbor, fillColor))
+                    {
+                        points.Enqueue(neighbor);
+                    }
+                }
             }
 
-            _bitmap.SetPixel(seedPoint.X, seedPoint.Y, fillColor);
-            _pictureBox.Refresh();
-
-            Point pointUp = new Point(seedPoint.X, seedPoint.Y + 1);
-            Point pointDown = new Point(seedPoint.X, seedPoint.Y - 1);
-            Point pointLeft = new Point(seedPoint.X - 1, seedPoint.Y);
-            Point pointRight = new Point(seedPoint.X + 1, seedPoint.Y);
-
-            FillWithSeed(borderColor, fillColor, pointUp);
-            FillWithSeed(borderColor, fillColor, pointDown);
-            FillWithSeed(borderColor, fillColor, pointLeft);
-            FillWithSeed(borderColor, fillColor, pointRight);
+            _pictureBox.Invalidate();
         }
 
-        private bool IsInPictureBox(Point p) => p.X >= 0 || p.X <= _pictureBox.Width || p.Y >= 0 || p.Y <= _pictureBox.Width;
+        private bool IsInPictureBox(Point p) => p.X >= 0 || p.X <= _pictureBox.Width || p.Y >= 0 || p.Y <= _pictureBox.Height;
     }
 }
