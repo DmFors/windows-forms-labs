@@ -24,11 +24,12 @@ namespace lab_6_fill
         {
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             //_painter.FillLineByLineScanning(Color.Black, Color.Pink);
             button1.Enabled = false;
-            await Task.Run(() => _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75)));
+            //await Task.Run(() => _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75)));
+            _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75));
             button1.Enabled = true;
         }
 

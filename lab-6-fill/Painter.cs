@@ -81,7 +81,7 @@
                 if (CanFillPoint(borderColor, fillColor, point))
                 {
                     _bitmap.SetPixel(point.X, point.Y, fillColor); // fill point
-                    if (DateTime.Now.Ticks % 100 == 0) _pictureBox.Invoke(_pictureBox.Invalidate);
+                    //_pictureBox.Invalidate(new Rectangle(point, new Size(1, 1)));
 
                     pointStack.Push(new Point(point.X, point.Y - 1)); // up
                     pointStack.Push(new Point(point.X, point.Y + 1)); // down
@@ -90,7 +90,7 @@
                 }
             }
 
-            _pictureBox.Invoke(_pictureBox.Invalidate);
+            _pictureBox.Invalidate();
             MessageBox.Show("Закраска завершена!", "Сообщение", MessageBoxButtons.OK);
         }
 
