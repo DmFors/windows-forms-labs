@@ -46,24 +46,6 @@
             _pictureBox.Invalidate();
         }
 
-        private List<Point> GetLineBorderPoints(Color borderColor, int lineY)
-        {
-            List<Point> borderPoints = new();
-
-            for (int x = 0; x < _bitmap.Width; x++)
-            {
-                if (IsPixelOfColor(x, lineY, borderColor))
-                {
-                    borderPoints.Add(new Point(x, lineY));
-                }
-            }
-            return borderPoints;
-        }
-
-        private bool IsPixelOfColor(int x, int y, Color color) => _bitmap.GetPixel(x, y).ToArgb() == color.ToArgb();
-
-        private bool IsPixelOfColor(Point point, Color color) => IsPixelOfColor(point.X, point.Y, color);
-
         public void FillWithSeed(Color borderColor, Color fillColor, Point seedPoint)
         {
             if (!CanFillPoint(borderColor, fillColor, seedPoint))
@@ -81,7 +63,6 @@
                 if (CanFillPoint(borderColor, fillColor, point))
                 {
                     _bitmap.SetPixel(point.X, point.Y, fillColor); // fill point
-                    //_pictureBox.Invalidate(new Rectangle(point, new Size(1, 1)));
 
                     pointStack.Push(new Point(point.X, point.Y - 1)); // up
                     pointStack.Push(new Point(point.X, point.Y + 1)); // down
@@ -91,8 +72,25 @@
             }
 
             _pictureBox.Invalidate();
-            MessageBox.Show("Закраска завершена!", "Сообщение", MessageBoxButtons.OK);
         }
+
+        private List<Point> GetLineBorderPoints(Color borderColor, int lineY)
+        {
+            List<Point> borderPoints = new();
+
+            for (int x = 0; x < _bitmap.Width; x++)
+            {
+                if (IsPixelOfColor(x, lineY, borderColor))
+                {
+                    borderPoints.Add(new Point(x, lineY));
+                }
+            }
+            return borderPoints;
+        }
+
+        private bool IsPixelOfColor(int x, int y, Color color) => _bitmap.GetPixel(x, y).ToArgb() == color.ToArgb();
+
+        private bool IsPixelOfColor(Point point, Color color) => IsPixelOfColor(point.X, point.Y, color);
 
         private bool CanFillPoint(Color borderColor, Color fillColor, Point point) => IsInPictureBox(point) && !IsPixelOfColor(point, borderColor) && !IsPixelOfColor(point, fillColor);
 

@@ -4,6 +4,8 @@ namespace lab_6_fill
     {
         private Pen _pen;
         private Painter _painter;
+        private bool _isChoosingSeedPoint;
+        private Color _fillColor;
 
         public MainForm()
         {
@@ -11,8 +13,8 @@ namespace lab_6_fill
             _pen = new Pen(Color.Black, 5);
             _painter = new Painter(pictureBox1);
 
-            Figure _figure1 = new Figure(CreateTrianglePoints());
-            _figure1.Shift(dx: 0, dy: 0);
+            Figure _figure1 = new Figure(CreateV16Points());
+            _figure1.Shift(dx: 100, dy: 100);
             _painter.DrawFigure(_figure1, _pen);
 
             //Figure _figure2 = new Figure(CreateV16Points());
@@ -24,13 +26,26 @@ namespace lab_6_fill
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void fillSeedButton_Click(object sender, EventArgs e)
         {
-            //_painter.FillLineByLineScanning(Color.Black, Color.Pink);
-            button1.Enabled = false;
-            //await Task.Run(() => _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75)));
-            _painter.FillWithSeed(Color.Black, Color.Pink, new Point(75, 75));
-            button1.Enabled = true;
+            if (_fillColor == Color.Empty)
+            {
+                MessageBox.Show("Пожалуйста, выберите цвет заливки", "Сообщение", MessageBoxButtons.OK);
+            }
+
+            StartFillSeed();
+        }
+
+        private void StartFillSeed()
+        {
+            _isChoosingSeedPoint = true;
+            pictureBox1.Cursor = Cursors.Cross;
+        }
+
+        private void StopFillSeed()
+        {
+            _isChoosingSeedPoint = false;
+            pictureBox1.Cursor = Cursors.Default;
         }
 
         private static List<FigurePoint> CreateTrianglePoints()
@@ -96,6 +111,35 @@ namespace lab_6_fill
             pt10.ConnectTo(pt1);
 
             return new() { pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9, pt10 };
+        }
+
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_isChoosingSeedPoint)
+            {
+                _painter.FillWithSeed(_pen.Color, _fillColor, e.Location);
+                StopFillSeed();
+            }
+        }
+
+        private void fillLineButton_Click(object sender, EventArgs e)
+        {
+            if (_fillColor == Color.Empty)
+            {
+                MessageBox.Show("Пожалуйста, выберите цвет заливки", "Сообщение", MessageBoxButtons.OK);
+            }
+
+            StopFillSeed();
+            _painter.FillLineByLineScanning(_pen.Color, _fillColor);
+        }
+
+        private void chooseColorButton_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                _fillColor = colorDialog.Color;
+            }
         }
     }
 }

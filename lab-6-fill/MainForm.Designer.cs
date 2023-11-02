@@ -29,64 +29,81 @@
         private void InitializeComponent()
         {
             pictureBox1 = new PictureBox();
-            button1 = new Button();
-            label1 = new Label();
+            fillSeedButton = new Button();
+            fillLineButton = new Button();
+            chooseColorButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.FromArgb(224, 224, 224);
             pictureBox1.Location = new Point(92, 27);
             pictureBox1.Margin = new Padding(4, 5, 4, 5);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1485, 1113);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseClick += pictureBox1_MouseClick;
             // 
-            // button1
+            // fillSeedButton
             // 
-            button1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(1635, 227);
-            button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(544, 101);
-            button1.TabIndex = 1;
-            button1.Text = "Перекрасить";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            fillSeedButton.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            fillSeedButton.Location = new Point(1623, 322);
+            fillSeedButton.Margin = new Padding(4, 5, 4, 5);
+            fillSeedButton.Name = "fillSeedButton";
+            fillSeedButton.Size = new Size(544, 101);
+            fillSeedButton.TabIndex = 1;
+            fillSeedButton.Text = "Затравка";
+            fillSeedButton.UseVisualStyleBackColor = true;
+            fillSeedButton.Click += fillSeedButton_Click;
             // 
-            // label1
+            // fillLineButton
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(583, 1184);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(549, 81);
-            label1.TabIndex = 2;
-            label1.Text = "Формат пикселей: ";
+            fillLineButton.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            fillLineButton.Location = new Point(1623, 167);
+            fillLineButton.Margin = new Padding(4, 5, 4, 5);
+            fillLineButton.Name = "fillLineButton";
+            fillLineButton.Size = new Size(544, 101);
+            fillLineButton.TabIndex = 3;
+            fillLineButton.Text = "Построчно";
+            fillLineButton.UseVisualStyleBackColor = true;
+            fillLineButton.Click += fillLineButton_Click;
+            // 
+            // chooseColorButton
+            // 
+            chooseColorButton.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            chooseColorButton.Location = new Point(1623, 27);
+            chooseColorButton.Margin = new Padding(4, 5, 4, 5);
+            chooseColorButton.Name = "chooseColorButton";
+            chooseColorButton.Size = new Size(544, 101);
+            chooseColorButton.TabIndex = 4;
+            chooseColorButton.Text = "Выбрать цвет";
+            chooseColorButton.UseVisualStyleBackColor = true;
+            chooseColorButton.Click += chooseColorButton_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2544, 1361);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(chooseColorButton);
+            Controls.Add(fillLineButton);
+            Controls.Add(fillSeedButton);
             Controls.Add(pictureBox1);
             Margin = new Padding(4, 5, 4, 5);
             Name = "MainForm";
-            Text = "Form1";
+            Text = "Заливка фигуры";
             Paint += MainForm_Paint;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private PictureBox pictureBox1;
-        private Button button1;
-        private Label label1;
+        private Button fillSeedButton;
+        private Button fillLineButton;
+        private Button chooseColorButton;
     }
 }
