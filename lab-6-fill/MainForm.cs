@@ -5,14 +5,14 @@ namespace lab_6_fill
         private Pen _pen;
         private Painter _painter;
         private bool _isChoosingSeedPoint;
-        private Color _fillColor;
+        private Color _fillColor = Color.Purple;
 
         public MainForm()
         {
             InitializeComponent();
-            SetInfoText("");
             _pen = new Pen(Color.Black, 5);
             _painter = new Painter(pictureBox1);
+            SetInfoText("");
 
             Figure figure1 = new Figure(CreateV16Points());
             figure1.Shift(dx: 100, dy: 100);
@@ -82,7 +82,9 @@ namespace lab_6_fill
                 SetInfoText("");
             }
 
+            SetInfoText("Выполняется заливка, подождите...");
             _painter.FillLineByLineScanning(_pen.Color, _fillColor);
+            SetInfoText("");
         }
 
         private void fillSeedButton_Click(object sender, EventArgs e)
