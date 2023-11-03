@@ -94,7 +94,6 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "MainForm";
             Text = "Заливка фигуры";
-            Paint += MainForm_Paint;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
