@@ -10,12 +10,13 @@ namespace lab_6_fill
         public MainForm()
         {
             InitializeComponent();
+            SetInfoText("");
             _pen = new Pen(Color.Black, 5);
             _painter = new Painter(pictureBox1);
 
-            Figure _figure1 = new Figure(CreateV16Points());
-            _figure1.Shift(dx: 100, dy: 100);
-            _painter.DrawFigure(_figure1, _pen);
+            Figure figure1 = new Figure(CreateV16Points());
+            figure1.Shift(dx: 100, dy: 100);
+            _painter.DrawFigure(figure1, _pen);
         }
 
         private void chooseColorButton_Click(object sender, EventArgs e)
@@ -24,6 +25,7 @@ namespace lab_6_fill
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
                 _fillColor = colorDialog.Color;
+                colorPreviewRect.BackColor = _fillColor;
             }
         }
 
@@ -52,14 +54,34 @@ namespace lab_6_fill
             return new() { pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9 };
         }
 
+        private static List<FigurePoint> CreateTrianglePoints()
+        {
+            FigurePoint pt1 = new FigurePoint(400, 400);
+            FigurePoint pt2 = new FigurePoint(500, 400);
+            FigurePoint pt3 = new FigurePoint(500, 500);
+            FigurePoint pt4 = new FigurePoint(400, 500);
+
+            pt1.ConnectTo(pt2);
+            pt2.ConnectTo(pt4);
+            pt4.ConnectTo(pt1);
+
+            return new List<FigurePoint>() { pt1, pt2, pt4 };
+        }
+
         private void fillLineButton_Click(object sender, EventArgs e)
         {
+            StopFillWithSeed();
+
             if (_fillColor == Color.Empty)
             {
-                MessageBox.Show("Пожалуйста, выберите цвет заливки", "Сообщение", MessageBoxButtons.OK);
+                SetInfoText("Пожалуйста, выберите цвет заливки");
+                return;
+            }
+            else
+            {
+                SetInfoText("");
             }
 
-            StopFillSeed();
             _painter.FillLineByLineScanning(_pen.Color, _fillColor);
         }
 
@@ -67,31 +89,45 @@ namespace lab_6_fill
         {
             if (_fillColor == Color.Empty)
             {
-                MessageBox.Show("Пожалуйста, выберите цвет заливки", "Сообщение", MessageBoxButtons.OK);
+                SetInfoText("Пожалуйста, выберите цвет заливки");
+                return;
+            }
+            else
+            {
+                SetInfoText("");
             }
 
-            StartFillSeed();
-        }
-
-        private void StartFillSeed()
-        {
-            _isChoosingSeedPoint = true;
-            pictureBox1.Cursor = Cursors.Cross;
-        }
-
-        private void StopFillSeed()
-        {
-            _isChoosingSeedPoint = false;
-            pictureBox1.Cursor = Cursors.Default;
+            StartFillWithSeed();
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (_isChoosingSeedPoint)
             {
+                SetInfoText("Выполняется заливка, подождите...");
                 _painter.FillWithSeed(_pen.Color, _fillColor, e.Location);
-                StopFillSeed();
+                SetInfoText("");
+                StopFillWithSeed();
             }
+        }
+
+        private void StartFillWithSeed()
+        {
+            _isChoosingSeedPoint = true;
+            pictureBox1.Cursor = Cursors.Cross;
+            fillSeedButton.Enabled = false;
+        }
+
+        private void StopFillWithSeed()
+        {
+            _isChoosingSeedPoint = false;
+            pictureBox1.Cursor = Cursors.Default;
+            fillSeedButton.Enabled = true;
+        }
+        private void SetInfoText(string text)
+        {
+            infoLabel.Text = text;
+            Refresh();
         }
     }
 }

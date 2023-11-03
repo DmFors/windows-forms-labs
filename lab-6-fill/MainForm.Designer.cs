@@ -32,7 +32,10 @@
             fillSeedButton = new Button();
             fillLineButton = new Button();
             chooseColorButton = new Button();
+            infoLabel = new Label();
+            colorPreviewRect = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)colorPreviewRect).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -73,20 +76,41 @@
             // chooseColorButton
             // 
             chooseColorButton.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            chooseColorButton.Location = new Point(1623, 27);
+            chooseColorButton.Location = new Point(1771, 40);
             chooseColorButton.Margin = new Padding(4, 5, 4, 5);
             chooseColorButton.Name = "chooseColorButton";
-            chooseColorButton.Size = new Size(544, 101);
+            chooseColorButton.Size = new Size(396, 101);
             chooseColorButton.TabIndex = 4;
             chooseColorButton.Text = "Выбрать цвет";
             chooseColorButton.UseVisualStyleBackColor = true;
             chooseColorButton.Click += chooseColorButton_Click;
+            // 
+            // infoLabel
+            // 
+            infoLabel.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            infoLabel.Location = new Point(1623, 471);
+            infoLabel.Name = "infoLabel";
+            infoLabel.Size = new Size(544, 669);
+            infoLabel.TabIndex = 5;
+            infoLabel.Text = "Информация";
+            // 
+            // colorPreviewRect
+            // 
+            colorPreviewRect.BackColor = SystemColors.Control;
+            colorPreviewRect.BorderStyle = BorderStyle.FixedSingle;
+            colorPreviewRect.Location = new Point(1623, 52);
+            colorPreviewRect.Name = "colorPreviewRect";
+            colorPreviewRect.Size = new Size(141, 76);
+            colorPreviewRect.TabIndex = 6;
+            colorPreviewRect.TabStop = false;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(2544, 1361);
+            Controls.Add(colorPreviewRect);
+            Controls.Add(infoLabel);
             Controls.Add(chooseColorButton);
             Controls.Add(fillLineButton);
             Controls.Add(fillSeedButton);
@@ -95,6 +119,7 @@
             Name = "MainForm";
             Text = "Заливка фигуры";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)colorPreviewRect).EndInit();
             ResumeLayout(false);
         }
 
@@ -104,5 +129,7 @@
         private Button fillSeedButton;
         private Button fillLineButton;
         private Button chooseColorButton;
+        private Label infoLabel;
+        private PictureBox colorPreviewRect;
     }
 }
