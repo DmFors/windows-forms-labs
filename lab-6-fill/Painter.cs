@@ -20,6 +20,7 @@
             _pictureBox.Invalidate();
         }
 
+        // построчная заливка
         public void FillLineByLineScanning(Color borderColor, Color fillColor)
         {
             Pen pen = new Pen(fillColor);
@@ -28,7 +29,7 @@
             {
                 List<Point> lineBorderPoints = GetLineBorderPoints(borderColor, line);
 
-                for (int i = 0; i < lineBorderPoints.Count - 1; i++)
+                for (int i = 0; i < lineBorderPoints.Count - 1; i += 2)
                 {
                     Point borderPointA = lineBorderPoints[i];
                     Point borderPointB = lineBorderPoints[i + 1];
@@ -41,7 +42,7 @@
                         _graphics.DrawLine(pen, pointA, pointB);
 
                         _pictureBox.Refresh();
-                        Task.Delay(1).Wait();
+                        Task.Delay(1).Wait(); // ждем 1 мс
                     }
                 }
             }
@@ -81,6 +82,7 @@
             return true;
         }
 
+        // заливка с затравкой
         public void FillWithSeed(Color borderColor, Color fillColor, Point seedPoint)
         {
             if (!CanFillPixel(borderColor, fillColor, seedPoint))
