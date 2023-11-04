@@ -29,7 +29,7 @@
             {
                 List<Point> lineBorderPoints = GetLineBorderPoints(borderColor, line);
 
-                for (int i = 0; i < lineBorderPoints.Count - 1; i += 2)
+                for (int i = 0; i < lineBorderPoints.Count - 1; i++)
                 {
                     Point borderPointA = lineBorderPoints[i];
                     Point borderPointB = lineBorderPoints[i + 1];
