@@ -147,7 +147,8 @@ namespace lab_6_fill
             return new() { pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9, pt10, pt11, pt12 };
         }
 
-        private void chooseColorButton_Click(object sender, EventArgs e)  // клик по кнопке выбора цвета
+        // клик по кнопке выбора цвета
+        private void chooseColorButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
             if (colorDialog.ShowDialog() == DialogResult.OK)
@@ -157,7 +158,8 @@ namespace lab_6_fill
             }
         }
 
-        private void fillLineButton_Click(object sender, EventArgs e) // клик по кнопке построчной заливки
+        // клик по кнопке построчной заливки
+        private void fillLineButton_Click(object sender, EventArgs e)
         {
             StopFillWithSeed(); // останавливаем выбор точки для заливки с затравкой, если он происходит
 
@@ -172,7 +174,8 @@ namespace lab_6_fill
             SetInfoText("");
         }
 
-        private void fillSeedButton_Click(object sender, EventArgs e) // клик по кнопке заливки с затравкой
+        // клик по кнопке заливки с затравкой
+        private void fillSeedButton_Click(object sender, EventArgs e)
         {
             if (_fillColor == Color.Empty)
             {
@@ -187,21 +190,24 @@ namespace lab_6_fill
             StartFillWithSeed();
         }
 
-        private void StartFillWithSeed() // начинаем выбирать точку затравки
+        // начинаем выбирать точку затравки
+        private void StartFillWithSeed()
         {
             _isChoosingSeedPoint = true;
             pictureBox1.Cursor = _choosingSeedPointCursor;
             fillSeedButton.Enabled = false;
         }
 
-        private void StopFillWithSeed() // заканчиваем выбирать точку затравки
+        // заканчиваем выбирать точку затравки
+        private void StopFillWithSeed()
         {
             _isChoosingSeedPoint = false;
             pictureBox1.Cursor = Cursors.Default;
             fillSeedButton.Enabled = true;
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e) // клик по области рисования для выбора точки затравки
+        // клик по области рисования для выбора точки затравки
+        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             if (_isChoosingSeedPoint)
             {
@@ -212,7 +218,8 @@ namespace lab_6_fill
             }
         }
 
-        private void SetInfoText(string text) // уведомления для пользователя
+        // уведомления для пользователя
+        private void SetInfoText(string text)
         {
             infoLabel.Text = text;
             Refresh();

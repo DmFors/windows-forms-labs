@@ -14,6 +14,7 @@
             _graphics = Graphics.FromImage(_bitmap);
         }
 
+        // отрисовка изначальной фигуры
         public void DrawFigure(Figure figure, Pen pen)
         {
             figure.Draw(_graphics, pen);
@@ -34,7 +35,7 @@
                     Point borderPointA = lineBorderPoints[i];
                     Point borderPointB = lineBorderPoints[i + 1];
 
-                    if (IsGapBetweenBorderPoints(borderPointA, borderPointB, fillColor))
+                    if (IsGapBetweenBorderPoints(borderPointA, borderPointB, borderColor, fillColor))
                     {
                         Point pointA = new Point(borderPointA.X + 1, borderPointA.Y);
                         Point pointB = new Point(borderPointB.X - 1, borderPointB.Y);
@@ -49,6 +50,7 @@
             _pictureBox.Invalidate();
         }
 
+        // получение списка точек цвета границы
         private List<Point> GetLineBorderPoints(Color borderColor, int lineY)
         {
             List<Point> borderPoints = new();
@@ -63,7 +65,8 @@
             return borderPoints;
         }
 
-        private bool IsGapBetweenBorderPoints(Point borderPointA, Point borderPointB, Color fillColor)
+        // есть ли промежуток между двумя точками
+        private bool IsGapBetweenBorderPoints(Point borderPointA, Point borderPointB, Color borderColor, Color fillColor)
         {
             int gapLengthInPixels = borderPointB.X - borderPointA.X - 1;
             if (gapLengthInPixels < 1)
@@ -74,7 +77,7 @@
             for (int x = borderPointA.X + 1; x < borderPointB.X; x++)
             {
                 Point gapPoint = new Point(x, borderPointA.Y);
-                if (IsPixelOfColor(gapPoint, fillColor))
+                if (!CanFillPixel(borderColor, fillColor, gapPoint))
                 {
                     return false;
                 }
@@ -113,12 +116,16 @@
             _pictureBox.Invalidate();
         }
 
+        // проверка точки на цвет
         private bool IsPixelOfColor(int x, int y, Color color) => _bitmap.GetPixel(x, y).ToArgb() == color.ToArgb();
 
+        // проверка точки на цвет
         private bool IsPixelOfColor(Point point, Color color) => IsPixelOfColor(point.X, point.Y, color);
 
+        // проверка можно ли закрасить пиксель
         private bool CanFillPixel(Color borderColor, Color fillColor, Point point) => IsInPictureBox(point) && !IsPixelOfColor(point, borderColor) && !IsPixelOfColor(point, fillColor);
 
+        // проверка находится ли пиксель в границах формы
         private bool IsInPictureBox(Point p) => p.X >= 0 && p.X < _pictureBox.Width && p.Y >= 0 && p.Y < _pictureBox.Height;
     }
 }
