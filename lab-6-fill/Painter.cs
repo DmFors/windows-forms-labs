@@ -41,9 +41,6 @@
                         Point pointB = new Point(borderPointB.X - 1, borderPointB.Y);
 
                         _graphics.DrawLine(pen, pointA, pointB);
-
-                        _pictureBox.Refresh();
-                        Task.Delay(1).Wait(); // ждем 1 мс
                     }
                 }
             }
@@ -96,7 +93,6 @@
             Stack<Point> pointStack = new Stack<Point>();
             pointStack.Push(seedPoint);
 
-            int filledPixelCount = 0;
             while (pointStack.Count > 0)
             {
                 Point point = pointStack.Pop();
@@ -104,7 +100,6 @@
                 if (CanFillPixel(borderColor, fillColor, point))
                 {
                     _bitmap.SetPixel(point.X, point.Y, fillColor); // закрашиваем пиксель
-                    if (++filledPixelCount % 100 == 0) _pictureBox.Refresh(); // обновляем картинку каждые n закрашенных пикселей
 
                     pointStack.Push(new Point(point.X, point.Y - 1)); // верх
                     pointStack.Push(new Point(point.X, point.Y + 1)); // низ
